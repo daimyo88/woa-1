@@ -29,8 +29,11 @@ export default function Theme({children}) {
         },
         typography: {
             h1: {
-                fontSize: themeMode.mode === 'light' ? 50 : 60,
-                fontWeight: 600
+                fontSize: 24,
+                fontWeight: 400,
+                [breakpoints.down('sm')]: {
+                  fontSize: 20,
+                },
             },
             h2: {
                 fontSize: 22,
@@ -54,16 +57,37 @@ export default function Theme({children}) {
         },
         palette: {
           mode: themeMode.mode,
-          // primary: {
-          //   main: '#e37c31',
-          //   light: 'rgba(234,234,234,0.9)',
-          //   dark: '#da6d1d' 
-          // },
-          // secondary: {
-          //   main: '#75AF9E',
-          //   light: '#B4DBD0',
-          //   dark: '#5B887B' 
-          // },
+          ...(themeMode.mode === 'light' ? {
+          primary: {
+            main: '#512888',
+            light: '#512888',
+            dark: '#512888' 
+          },
+          secondary: {
+            main: '#DA4200',
+            light: '#DA4200',
+            dark: '#DA4200' 
+          },
+          background: '#ffffff',
+          text: {
+            primary: 'rgb(30, 30, 30)'
+          }
+        } : {
+            primary: {
+              main: '#512888',
+              light: '#512888',
+              dark: '#512888' 
+            },
+            secondary: {
+              main: '#DA4200',
+              light: '#DA4200',
+              dark: '#DA4200' 
+            },
+            background: 'rgb(30, 30, 30)',
+            text: {
+              primary: '#fff'
+            }  
+        })
         },
     });
 

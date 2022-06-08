@@ -5,20 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from "react-router-dom";
 
-const pages = [
-    {
-        name: 'Search',
-        url: 'search'
-    },
-    {
-        name: 'About',
-        url: 'about'
-    },
-    {
-        name: 'Contact',
-        url: 'contact'
-    },
-];
+import { PAGES } from '../../constants/contstants';
 
 export default function MenuNavigation(props) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -61,7 +48,7 @@ export default function MenuNavigation(props) {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {pages.map((page) => (
+                {PAGES.map((page) => (
                         <NavLink
                             key={page.name}
                             to={page.url}

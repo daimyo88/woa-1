@@ -13,6 +13,7 @@ export default function ThemeModeSwitcher() {
                 <Button 
                     onClick={() => { setThemeMode({mode: 'light'})}}
                     variant="contained" 
+                    color="secondary"
                     startIcon={<LightModeIcon />}
                 >
                     Light
@@ -22,6 +23,7 @@ export default function ThemeModeSwitcher() {
                 <Button 
                     onClick={() => { setThemeMode({mode: 'dark'})}}
                     variant="contained" 
+                    color="secondary"
                     startIcon={<DarkModeIcon />}
                 >
                     Dark

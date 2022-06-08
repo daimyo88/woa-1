@@ -1,44 +1,34 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { NavLink } from "react-router-dom";
+import { PAGES } from '../../constants/contstants';
+import SearchIcon from '@mui/icons-material/Search';
 
-const pages = [
-    {
-        name: 'Search',
-        url: 'search'
-    },
-    {
-        name: 'About',
-        url: 'about'
-    },
-    {
-        name: 'Contact',
-        url: 'contact'
-    },
-];
-
-export default function Navigation(props) {
+export default function Navigation() {
     return (
         <>
-            {pages.map((page) => (
-                <Button
-                    key={page.name}
-                    color='primary'
-                    sx={{ color: '#fff', display: 'block' }}
-                    selected={true}
-                >
-                    <NavLink
+            {PAGES.map((page) => {
+                let icon = null;
+                if (page.name === 'Search') icon = <SearchIcon />;
+                return (
+                    <Button 
+                        key={page.name}
+                        endIcon= {icon}
+                        component={ NavLink }
                         to={page.url}
-                        style={({ isActive }) => ({
-                            color: 'inherit',
-                            textDecoration: (isActive ? 'underline': 'none')
-                        })
-                    }
+                        sx={{
+                            color: '#ffffff',
+                            fontWeight: 'normal',
+                            mx: '5px',
+                            '&.active': {
+                                fontWeight: 'bold'
+                            }
+                        }}
                     >
                         {page.name}
-                    </NavLink>
-                </Button>
-            ))}
+                    </Button>
+                )}
+            )}
         </>
     )
 }
