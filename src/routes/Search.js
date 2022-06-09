@@ -1,7 +1,10 @@
 import React from 'react';
+import PageTitle from '../components/PageTitle/PageTitle';
 
 export default function Search(){
     return (
-        <div>Search</div>
+        <>
+            <PageTitle text="Anime search" />
+        </>
     )
 }

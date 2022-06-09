@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 const ThemeModeContext = createContext({});
 
 const ThemeModeContextProvider = ({ children }) => {
-  const [themeMode, setThemeMode] = useState({mode: 'light'});
+  const [themeMode, setThemeMode] = useState({mode: 'dark'});
 
   const dataState = {
     themeMode,

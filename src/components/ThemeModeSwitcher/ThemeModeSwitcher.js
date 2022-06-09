@@ -14,6 +14,7 @@ export default function ThemeModeSwitcher() {
                     onClick={() => { setThemeMode({mode: 'light'})}}
                     variant="contained" 
                     color="secondary"
+                    sx={{minWidth: '88px'}}
                     startIcon={<LightModeIcon />}
                 >
                     Light
@@ -24,6 +25,7 @@ export default function ThemeModeSwitcher() {
                     onClick={() => { setThemeMode({mode: 'dark'})}}
                     variant="contained" 
                     color="secondary"
+                    sx={{minWidth: '88px'}}
                     startIcon={<DarkModeIcon />}
                 >
                     Dark

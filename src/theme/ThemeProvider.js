@@ -25,7 +25,7 @@ export default function Theme({children}) {
                   minHeight: "48px"
               },
             }
-          }
+          },
         },
         typography: {
             h1: {
@@ -57,32 +57,25 @@ export default function Theme({children}) {
         },
         palette: {
           mode: themeMode.mode,
-          ...(themeMode.mode === 'light' ? {
           primary: {
             main: '#512888',
-            light: '#512888',
-            dark: '#512888' 
+            light: '#804ac9',
+            lightest: '#dacbef',
+            dark: '#40206c'
           },
           secondary: {
             main: '#DA4200',
-            light: '#DA4200',
-            dark: '#DA4200' 
+            light: '#ff5c15',
+            dark: '#ae3400'
           },
-          background: '#ffffff',
+          ...(themeMode.mode === 'light' ? {
+          footerBackground: '#dacbef',
+          background: '#f2ecf9',
           text: {
             primary: 'rgb(30, 30, 30)'
           }
         } : {
-            primary: {
-              main: '#512888',
-              light: '#512888',
-              dark: '#512888' 
-            },
-            secondary: {
-              main: '#DA4200',
-              light: '#DA4200',
-              dark: '#DA4200' 
-            },
+            footerBackground: 'transparent',
             background: 'rgb(30, 30, 30)',
             text: {
               primary: '#fff'

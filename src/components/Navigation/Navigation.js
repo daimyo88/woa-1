@@ -20,8 +20,11 @@ export default function Navigation() {
                             color: '#ffffff',
                             fontWeight: 'normal',
                             mx: '5px',
+                            '&:hover': {
+                                color: 'secondary.main'
+                            },
                             '&.active': {
-                                fontWeight: 'bold'
+                                color: 'secondary.main'
                             }
                         }}
                     >
