@@ -2,9 +2,10 @@ import React from 'react';
 import { createContext, useState } from "react";
 
 const ThemeModeContext = createContext({});
+const mode = localStorage.getItem('woaThemeMode') || 'dark';
 
 const ThemeModeContextProvider = ({ children }) => {
-  const [themeMode, setThemeMode] = useState({mode: 'dark'});
+  const [themeMode, setThemeMode] = useState({mode: mode});
 
   const dataState = {
     themeMode,

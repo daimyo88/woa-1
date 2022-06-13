@@ -2,22 +2,22 @@ import React from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 
+const StyledTitle = styled.h1(({theme}) => ({
+        color: theme.palette.secondary.main,
+        textAlign: 'center',
+        fontWeight: 500,
+        fontSize: '30px',
+        margin: '20px 0 10px',
+        '@media(max-width: 768px)': {
+            margin: '12px 0 6px',
+            fontSize: '22px',
+        }
+    }))
+
 export default function PageTitle({ text }) {
     const theme = useTheme();
 
-    const StyledTitle = styled.h1`
-            color: ${theme.palette.secondary.main};
-            text-align: center;
-            font-weight: 500;
-            font-size: 30px;
-            margin: 20px 0;
-            @media(max-width: 768px) {
-                margin: 15px 0;
-                font-size: 24px;
-            }
-        `;
-
     return (
-        <StyledTitle>{text}</StyledTitle>
+        <StyledTitle theme={theme}>{text}</StyledTitle>
     )
 }

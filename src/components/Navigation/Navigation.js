@@ -19,6 +19,7 @@ export default function Navigation() {
                         sx={{
                             color: '#ffffff',
                             fontWeight: 'normal',
+                            fontSize: '16px',
                             mx: '5px',
                             '&:hover': {
                                 color: 'secondary.main'
