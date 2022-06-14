@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@mui/material/Paper';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+
+import { AnimeListContext } from '../../context/anime-list-context';
 
 const StyledTextField = styled(TextField)(({theme}) => ({
     "& .MuiOutlinedInput-root": {
@@ -26,16 +28,21 @@ const StyledTextField = styled(TextField)(({theme}) => ({
     }
   }));
 
-export default function Search({submitHandler}) {
+export default function Search() {
+    const { searchQuery, setSearchQuery } = useContext(AnimeListContext);
     const theme = useTheme();
     const [inputValue, setInputValue] = useState('');
 
     const keyPressHandler = (e) => {
         if(e.keyCode === 13) {
             e.preventDefault();
-            submitHandler(inputValue);
+            setSearchQuery(inputValue);
         }
     } 
+
+    useEffect(() => {
+        setInputValue(searchQuery);
+    },[searchQuery])
 
     return (
         <Grid container>
@@ -56,7 +63,7 @@ export default function Search({submitHandler}) {
                                 <InputAdornment position="start">
                                 <IconButton
                                     edge="start"
-                                    onClick={() => {setInputValue('')}}
+                                    onClick={() => {setInputValue(''); setSearchQuery('')}}
                                 >
                                     <ClearIcon sx={{color: 'primary.main'}}/>
                                 </IconButton>
@@ -66,7 +73,7 @@ export default function Search({submitHandler}) {
                                 <InputAdornment position="end">
                                 <IconButton
                                     edge="end"
-                                    onClick={() => submitHandler(inputValue)}
+                                    onClick={() => setSearchQuery(inputValue)}
                                 >
                                     <SearchIcon sx={{color: 'secondary.main'}}/>
                                 </IconButton>

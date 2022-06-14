@@ -9,6 +9,8 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import styled from '@emotion/styled';
 
+// import { AnimeListContext } from '../../context/anime-list-context';
+
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({ theme }) => ({
@@ -34,8 +36,6 @@ const AccordionSummary = styled((props) => (
   }));
 
   export default function SearchPage() {
-
-    const [searchQuery, setSearchQuery] = useState('');
     const [advancedSearch, setAdvancedSearch] = useState(false);
 
     return (
@@ -48,7 +48,7 @@ const AccordionSummary = styled((props) => (
                 spacing={2}
             >
                 <Grid item>
-                    <Search submitHandler={setSearchQuery}/>
+                    <Search />
                 </Grid>
                 <Grid item>
                     <Button 
