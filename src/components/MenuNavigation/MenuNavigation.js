@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { useTheme } from '@emotion/react';
 import SearchIcon from '@mui/icons-material/Search';
 import { PAGES } from '../../constants/contstants';
+import { Box } from '@mui/system';
 
 export default function MenuNavigation(props) {
   const theme = useTheme();
@@ -44,33 +45,44 @@ export default function MenuNavigation(props) {
                 vertical: 'top',
                 horizontal: 'left',
               }}
+              elevation={0}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {PAGES.map((page) => (
-                      <NavLink
-                          key={page.name}
-                          to={page.url}
-                          style={{ color: 'inherit', textDecoration: 'none' }
-                          }
-                      >
-                      {({ isActive }) => (
-                          <MenuItem 
-                            onClick={handleCloseNavMenu} 
-                            selected={isActive}
-                            sx={{
-                              display: { background: theme.palette.background },
-                            }}
-                          >
-                            {page.name}
-                            { page.name === 'Search' && <SearchIcon sx={{ml: '10px'}}/>}
-                          </MenuItem>
-                          )}
-                      </NavLink>
-              ))}
+              <Box
+                sx={{
+                  background: theme.palette.background,
+                }}
+              >
+                {PAGES.map((page) => (
+                        <NavLink
+                            key={page.name}
+                            to={page.url}
+                            style={{ color: 'inherit', textDecoration: 'none' }
+                            }
+                        >
+                        {({ isActive }) => (
+                            <MenuItem 
+                              onClick={handleCloseNavMenu} 
+                              sx={{
+                                padding: '12px 15px',
+                                transition: '0.2s',
+                                color: (isActive ? 'secondary.main' : 'text.primary'),
+                                '&:hover': {
+                                  color: 'secondary.main'
+                                }
+                              }}
+                            >
+                              {page.name}
+                              { page.name === 'Search' && <SearchIcon sx={{ml: '10px'}}/>}
+                            </MenuItem>
+                            )}
+                        </NavLink>
+                ))}
+              </Box>
           </Menu>
       </>
   )

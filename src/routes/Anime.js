@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 export default function Anime() {
     let params = useParams();
-
     return (
         <div>{ params.id }</div>
     )
