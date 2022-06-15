@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Search from '../Search/Search';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -8,17 +7,17 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import styled from '@emotion/styled';
+import SearchInput from '../SearchInput/SearchInput';
 
 // import { AnimeListContext } from '../../context/anime-list-context';
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
-  ))(({ theme }) => ({
-  //  border: 
-    '&:before': {
-      display: 'none',
-    },
-  }));
+    ))(({ theme }) => ({
+      '&:before': {
+        display: 'none',
+      },
+    }));
 
 const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
@@ -27,6 +26,7 @@ const AccordionSummary = styled((props) => (
   ))(({ theme }) => ({
     border: 0,
     padding: 0,
+    m: 0,
     '&.Mui-focusVisible': {
         background: 'transparent',
     },
@@ -42,15 +42,18 @@ const AccordionSummary = styled((props) => (
         <Accordion expanded={advancedSearch === true} >
             <AccordionSummary aria-controls="advanced-search" id="advanced-search">
                 <Grid 
-                container 
-                justifyContent='center' 
-                alignItems="center"
-                spacing={2}
-            >
+                  container 
+                  justifyContent="center" 
+                  alignItems="center"
+                >
                 <Grid item>
-                    <Search />
+                    <SearchInput />
                 </Grid>
-                <Grid item>
+                <Grid item
+                  sx={{
+                    m: '10px'
+                  }}
+                >
                     <Button 
                         color="primary"
                         variant="contained"

@@ -7,9 +7,9 @@ const StyledTitle = styled.h1(({theme}) => ({
         textAlign: 'center',
         fontWeight: 500,
         fontSize: '30px',
-        margin: '20px 0 10px',
+        margin: '20px 0 5px',
         '@media(max-width: 768px)': {
-            margin: '12px 0 6px',
+            margin: '12px 0 5px',
             fontSize: '22px',
         }
     }))

@@ -19,6 +19,13 @@ export default function Theme({children}) {
               },
             },
           },
+          MuiAccordionSummary: {
+            styleOverrides: {
+              content: {
+                margin: 0,
+              },
+            },
+          },
           MuiToolbar: {
             styleOverrides: {
               regular: {

@@ -7,34 +7,20 @@ import { ThemeModeContext } from "../../context/theme-mode-context";
 
 export default function ThemeModeSwitcher() {
     const {themeMode, setThemeMode} = useContext(ThemeModeContext);
-    const switchMode = (mode) => {
-        setThemeMode({mode: mode});
-        localStorage.setItem('woaThemeMode', mode);
+    const switchMode = () => {
+        const newMode = themeMode.mode === 'light' ? 'dark' : 'light';
+        setThemeMode({mode: newMode});
+        localStorage.setItem('woaThemeMode', newMode);
     }
     return (
-        <>
-            { themeMode.mode === 'dark' && 
-                <Button 
-                    onClick={() => { switchMode('light')}}
-                    variant="contained" 
-                    color="secondary"
-                    sx={{minWidth: '88px'}}
-                    startIcon={<LightModeIcon />}
-                >
-                    Light
-                </Button> 
-            }
-            { themeMode.mode === 'light' && 
-                <Button 
-                    onClick={() => { switchMode('dark')}}
-                    variant="contained" 
-                    color="secondary"
-                    sx={{minWidth: '88px'}}
-                    startIcon={<DarkModeIcon />}
-                >
-                    Dark
-                </Button> 
-            }
-        </>
+        <Button 
+            onClick={() => { switchMode()}}
+            variant="contained" 
+            color="secondary"
+            sx={{minWidth: '88px'}}
+            startIcon={themeMode.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+        >
+            { themeMode.mode === 'light' ? 'Dark' : 'Light'}
+        </Button> 
     )
 }
