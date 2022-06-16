@@ -4,6 +4,8 @@ import AnimeListContainer from '../AnimeListContainer/AnimeListContainer';
 import AnimeListLoader from '../AnimeListLoader/AnimeListLoader';
 import AnimeItem from '../AnimeItem/AnimeItem';
 import { AnimeListContext } from '../../context/anime-list-context';
+import NothingFoundMessage from '../NothingFoundMessage/NothingFoundMessage';
+
 
 export default function AnimeList() {
     const { loading, animeList } = useContext(AnimeListContext);
@@ -14,13 +16,14 @@ export default function AnimeList() {
             { !loading && !!animeList?.length && 
                 <AnimeListContainer>
                     { animeList?.map(anime => {
-                        console.log(anime)
+                      //  console.log(anime)
                         return (
                             <AnimeItem {...anime} key={anime.mal_id} />
                         )
                     })}
                 </AnimeListContainer>
             }
+            {!loading && !animeList?.length && <NothingFoundMessage />}
         </>
     )
 }

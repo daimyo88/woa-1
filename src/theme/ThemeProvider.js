@@ -33,6 +33,20 @@ export default function Theme({children}) {
               },
             }
           },
+          MuiList: {
+            styleOverrides: {
+              padding: {
+                  padding: 0
+              },
+            }     
+          },
+          MuiSelect: {
+            styleOverrides: {
+              icon: {
+                  color: '#ff5c15'
+              },
+            }     
+          }
         },
         typography: {
             h1: {

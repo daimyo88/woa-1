@@ -10,16 +10,23 @@ const AnimeListContextProvider = ({ children }) => {
   const [animeList, setAnimeList] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
+  const [sort, setSort] = useState('&sort=desc&order_by=score');
 
   const setSearch = (value) => {
     setSearchQuery(value);
     setPage(1);
   } 
 
+  const setSortOrder = (value) => {
+    setSort(value);
+    setPage(1);
+  } 
+
   useEffect(() => {
     const options = {
       searchQuery,
-      page
+      page,
+      sort
     }
     const fetchAnime = async () => {
       try {
@@ -34,7 +41,7 @@ const AnimeListContextProvider = ({ children }) => {
       }
     }
     fetchAnime(options);
-  },[searchQuery, page]);
+  },[searchQuery, page, sort]);
 
   const dataState = {
     loading,
@@ -43,7 +50,9 @@ const AnimeListContextProvider = ({ children }) => {
     setSearch,
     page,
     setPage,
-    pages
+    pages,
+    sort, 
+    setSortOrder
   };  
 
   return (
