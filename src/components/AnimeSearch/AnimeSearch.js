@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import styled from '@emotion/styled';
-import SearchInput from '../SearchInput/SearchInput';
 
-// import { AnimeListContext } from '../../context/anime-list-context';
+import { AnimeListContext } from '../../context/anime-list-context';
+import SearchInput from '../SearchInput/SearchInput';
+import AnimeFilters from '../AnimeFilters/AnimeFilters';
 
 const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
+    <MuiAccordion 
+      disableGutters 
+      elevation={0} 
+      square 
+      {...props} 
+    />
     ))(({ theme }) => ({
       '&:before': {
         display: 'none',
@@ -36,7 +41,7 @@ const AccordionSummary = styled((props) => (
   }));
 
   export default function SearchPage() {
-    const [advancedSearch, setAdvancedSearch] = useState(false);
+    const {advancedSearch, setAdvancedSearch} = useContext(AnimeListContext);
 
     return (
         <Accordion expanded={advancedSearch === true} >
@@ -68,12 +73,7 @@ const AccordionSummary = styled((props) => (
             </Grid>
             </AccordionSummary>
             <MuiAccordionDetails sx={{p: 0}}>
-                <Paper sx={{p: '10px 15px'}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
-                </Paper>
+                <AnimeFilters />
             </MuiAccordionDetails>
         </Accordion>
     )

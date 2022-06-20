@@ -46,6 +46,29 @@ export default function Theme({children}) {
                   color: '#ff5c15'
               },
             }     
+          },
+          MuiAccordion: {
+            styleOverrides: {
+              root: {
+                  background: 'transparent'
+              }
+            }
+          },
+          MuiPaper: {
+            styleOverrides: {
+              root: {
+                ...(themeMode.mode === 'light' && {
+                  background: '#f2ecf9'
+                })
+              },
+            }     
+          },
+          MuiChip: {
+            styleOverrides: {
+              filled: {
+                border: '1px solid transparent'
+              }
+            }
           }
         },
         typography: {
@@ -64,12 +87,9 @@ export default function Theme({children}) {
                 },
             },
             h3: {
-                fontSize: 17,
+                fontSize: 18,
                 fontWeight: 600,
-                marginBottom: '20px',
-                [breakpoints.down('sm')]: {
-                  fontSize: 16,
-                },
+                marginBottom: '10px',
             },
             fontFamily: [
                 'Roboto',
@@ -85,18 +105,20 @@ export default function Theme({children}) {
             dark: '#40206c'
           },
           secondary: {
-            main: '#DA4200',
+            main: '#ff5c15',
             light: '#ff5c15',
             dark: '#ae3400'
           },
           ...(themeMode.mode === 'light' ? {
           footerBackground: '#dacbef',
-          background: '#f2ecf9',
+          tooltipBackground: '#e5d9f3',
+          background: '#ffffff',
           text: {
             primary: 'rgb(30, 30, 30)'
           }
         } : {
             footerBackground: 'transparent',
+            tooltipBackground: '#353535',
             background: 'rgb(30, 30, 30)',
             text: {
               primary: '#fff'

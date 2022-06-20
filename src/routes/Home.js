@@ -34,8 +34,8 @@ export default function Home(){
                     { themeMode.mode === 'light' ? <img src={lightPicture} alt="anime character light theme" />
                     : <img src={darkPicture} alt="anime character dark theme" /> }
                 </Grid>
-                <Grid item xs={12} sx={{ py: '40px' }}>
-                    <Paper elevation={0}>
+                <Grid item xs={12} sx={{ py: '25px' }}>
+                    <Paper elevation={0}  sx={{ py: '15px' }}>
                         <Typography 
                             align="center"
                             variant="h1"

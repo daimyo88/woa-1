@@ -15,7 +15,7 @@ import { SORT_OPTIONS } from '../../constants/contstants';
 
 export default function AnimeSort() {
     const theme = useTheme();
-    const { sort, setSortOrder } = useContext(AnimeListContext);
+    const { count, sort, setSortOrder } = useContext(AnimeListContext);
 
     const handleChange = (event) => {
         setSortOrder(event.target.value);
@@ -23,7 +23,7 @@ export default function AnimeSort() {
 
     return (
         <Box sx={{m: '10px 0 15px'}}>
-            <AnimeListContainer>
+            { !!count && <AnimeListContainer>
                 <Grid 
                     container 
                     justifyContent="space-between"
@@ -41,7 +41,7 @@ export default function AnimeSort() {
                         }}
                     >
                         <Typography variant="h2" color="secondary" sx={{m: 0, fontWeight: '400'}}>
-                            Search results:
+                            {`Search results (${count}):`}
                         </Typography>
                     </Grid>
                     <Grid 
@@ -82,7 +82,7 @@ export default function AnimeSort() {
                         </FormControl>
                     </Grid>
                 </Grid>
-            </AnimeListContainer>
+            </AnimeListContainer> }
         </Box>
     )
 }
