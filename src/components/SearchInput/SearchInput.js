@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@mui/material/Paper';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 import { AnimeListContext } from '../../context/anime-list-context';
 
@@ -28,14 +30,15 @@ const StyledTextField = styled(TextField)(({theme}) => ({
   }));
 
 export default function SearchInput() {
-    const { searchQuery, setSearch } = useContext(AnimeListContext);
+    const { searchQuery, setSearchQuery, setPage } = useContext(AnimeListContext);
     const theme = useTheme();
     const [inputValue, setInputValue] = useState('');
 
     const keyPressHandler = (e) => {
         if(e.keyCode === 13) {
             e.preventDefault();
-            setSearch(inputValue);
+            setSearchQuery(inputValue);
+            setPage(1);
         }
     } 
 
@@ -44,40 +47,46 @@ export default function SearchInput() {
     },[searchQuery])
 
     return (
-        <Paper onKeyDown={ keyPressHandler } >
-            <StyledTextField
-                id="search"
-                fullWidth
-                theme={theme}
-                value={inputValue}
-                onChange={(e)=> {setInputValue(e.target.value);}}
-                type="text"
-                variant="outlined"
-                placeholder="Search..."
-                color="secondary"
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                        <IconButton
-                            edge="start"
-                            onClick={() => {setInputValue(''); setSearch('')}}
-                        >
-                            <ClearIcon sx={{color: 'primary.main'}}/>
-                        </IconButton>
-                        </InputAdornment>
-                    ),
-                    endAdornment: (
-                        <InputAdornment position="end">
-                        <IconButton
-                            edge="end"
-                            onClick={() => setSearch(inputValue)}
-                        >
-                            <SearchIcon sx={{color: 'secondary.main'}}/>
-                        </IconButton>
-                        </InputAdornment>
-                    )
-                }}
-            /> 
-        </Paper>
+        <Grid container wrap="nowrap" justifyContent="center">
+            <Grid item>
+                <Paper onKeyDown={ keyPressHandler } >
+                    <StyledTextField
+                        id="search"
+                        fullWidth
+                        theme={theme}
+                        value={inputValue}
+                        onChange={(e)=> {setInputValue(e.target.value);}}
+                        type="text"
+                        variant="outlined"
+                        placeholder="Search..."
+                        color="secondary"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <IconButton
+                                        edge="start"
+                                        onClick={() => {setInputValue(''); setSearchQuery('');setPage(1)}}
+                                    >
+                                        <ClearIcon sx={{color: 'primary.main'}}/>
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    /> 
+                </Paper>          
+            </Grid>
+            <Grid item>
+                <Button 
+                    color="secondary"
+                    variant="contained"
+                    size="large"
+                    sx={{ml: '10px'}}
+                    endIcon={<SearchIcon />}
+                    onClick={() => { setSearchQuery(inputValue);setPage(1) }}
+                >
+                    Search
+                </Button>     
+            </Grid>
+        </Grid>
     )
 }

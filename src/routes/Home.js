@@ -12,16 +12,17 @@ import darkPicture from '../assets/img/hanekawa_double.png';
 import { ThemeModeContext } from "../context/theme-mode-context";
 import StyledLink from '../components/StyledLink/StyledLink';
 import HighlightedTitle from '../components/HighlightedTitle/HighlightedTitle';
+import { Box } from '@mui/material';
 
 export default function Home(){
     const {themeMode} = useContext(ThemeModeContext);
     
     return (
-        <Container 
+        <Box 
             sx={{
                 maxWidth: '800px',
                 py: '50px',
-                px: 0
+                m: '0 auto'
             }}
         >
             <Grid 
@@ -59,6 +60,6 @@ export default function Home(){
                     </Grid>
                 </Grid>
             </Grid>
-        </Container>
+        </Box>
     )
 }

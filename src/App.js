@@ -5,10 +5,10 @@ import {
   Route,
 } from "react-router-dom";
 import { ThemeModeContextProvider } from "./context/theme-mode-context";
+
 import Public from './layouts/Public';
 import ThemeProvider from './theme/ThemeProvider';
 import { AnimeListContextProvider } from './context/anime-list-context';
-
 import Home from './routes/Home';
 import Search from './routes/Search';
 import About from './routes/About';
@@ -21,20 +21,20 @@ export default function App() {
   return (
     <ThemeModeContextProvider>
       <ThemeProvider>
-        <AnimeListContextProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Public />}>
-                <Route index element={<Home />} />
-                <Route path="search" element={<Search />} />
-                <Route path="about" element={<About />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="anime/:id" element={<Anime />} />
-                <Route path="*" element={<PageNotFound />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </AnimeListContextProvider>
+          <AnimeListContextProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Public />}>
+                  <Route index element={<Home />} />
+                  <Route path="search" element={<Search />} />
+                  <Route path="about" element={<About />} />
+                  <Route path="contact" element={<Contact />} />
+                  <Route path="anime/:id" element={<Anime />} />
+                  <Route path="*" element={<PageNotFound />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </AnimeListContextProvider>
       </ThemeProvider>
     </ThemeModeContextProvider>
   );

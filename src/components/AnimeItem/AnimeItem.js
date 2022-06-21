@@ -50,6 +50,9 @@ const HoverDescription = ({ title, synopsis, genres, rating, aired, children }) 
     return (
         <StyledTooltip
             arrow
+            enterDelay={300}
+            enterNextDelay={300}
+            disableTouchListener={true}
             title={
                 <div 
                     style={{ maxWidth: '350px', padding: '10px 5px' }}

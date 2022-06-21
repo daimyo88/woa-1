@@ -44,6 +44,8 @@ const AccordionSummary = styled((props) => (
     const {advancedSearch, setAdvancedSearch} = useContext(AnimeListContext);
 
     return (
+      <>
+        <SearchInput />
         <Accordion expanded={advancedSearch === true} >
             <AccordionSummary aria-controls="advanced-search" id="advanced-search">
                 <Grid 
@@ -51,9 +53,6 @@ const AccordionSummary = styled((props) => (
                   justifyContent="center" 
                   alignItems="center"
                 >
-                <Grid item>
-                    <SearchInput />
-                </Grid>
                 <Grid item
                   sx={{
                     m: '10px'
@@ -76,5 +75,6 @@ const AccordionSummary = styled((props) => (
                 <AnimeFilters />
             </MuiAccordionDetails>
         </Accordion>
+      </>
     )
 }

@@ -15,10 +15,11 @@ import { SORT_OPTIONS } from '../../constants/contstants';
 
 export default function AnimeSort() {
     const theme = useTheme();
-    const { count, sort, setSortOrder } = useContext(AnimeListContext);
+    const { count, sort, setSort, setPage } = useContext(AnimeListContext);
 
     const handleChange = (event) => {
-        setSortOrder(event.target.value);
+        setSort(event.target.value);
+        setPage(1);
     };
 
     return (

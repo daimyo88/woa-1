@@ -16,23 +16,21 @@ const AnimeListContextProvider = ({ children }) => {
   const [sort, setSort] = useState('&sort=desc&order_by=score');
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
-
-  const setSearch = (value) => {
-    setSearchQuery(value);
-    setPage(1);
-  } 
-
-  const setSortOrder = (value) => {
-    setSort(value);
-    setPage(1);
-  } 
+  const [type, setType] = useState('');
+  const [rating, setRating] = useState('');
+  const [status, setStatus] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     const options = {
       searchQuery,
       page,
       sort,
-      genres: selectedGenres
+      genres: selectedGenres,
+      type,
+      rating,
+      status
     }
     const fetchAnime = async () => {
       try {
@@ -48,7 +46,7 @@ const AnimeListContextProvider = ({ children }) => {
       }
     }
     fetchAnime(options);
-  },[searchQuery, page, sort, selectedGenres]);
+  },[searchQuery, page, sort, selectedGenres, type, rating, status]);
 
   useEffect(() => {
     const fetchAnimeGenres = async () => {
@@ -72,15 +70,25 @@ const AnimeListContextProvider = ({ children }) => {
     loading,
     animeList,
     searchQuery,
-    setSearch,
+    setSearchQuery,
     page,
     setPage,
     pages,
     sort, 
-    setSortOrder,
+    setSort,
     genres,
     selectedGenres,
-    setSelectedGenres
+    setSelectedGenres,
+    type,
+    setType,
+    rating,
+    setRating,
+    status,
+    setStatus,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate
   };  
 
   return (

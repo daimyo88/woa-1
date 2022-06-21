@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@material-ui/core/styles';
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+import { createTheme } from "@mui/material/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeModeContext } from "../context/theme-mode-context";
+import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
 
 const breakpoints = createBreakpoints({});
 
@@ -63,8 +63,18 @@ export default function Theme({children}) {
               },
             }     
           },
+          MuiPopper: {
+            styleOverrides: {
+              root: {
+                  background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'
+              },
+            }     
+          },
           MuiChip: {
             styleOverrides: {
+              outlined: {
+                color: themeMode.mode === 'light' ? 'rgb(30, 30, 30)' : '#ffffff'
+              },
               filled: {
                 border: '1px solid transparent'
               }
