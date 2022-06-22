@@ -63,7 +63,7 @@ export default function Theme({children}) {
               },
             }     
           },
-          MuiPopper: {
+          MuiCalendarPicker: {
             styleOverrides: {
               root: {
                   background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'

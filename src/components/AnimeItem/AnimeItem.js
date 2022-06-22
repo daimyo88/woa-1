@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const StyledTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} arrow classes={{ popper: className }} />
+    <Tooltip arrow {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.arrow}`]: {
       color: theme.palette.tooltipBackground,
@@ -49,10 +49,10 @@ const HoverDescription = ({ title, synopsis, genres, rating, aired, children }) 
 
     return (
         <StyledTooltip
-            arrow
             enterDelay={300}
             enterNextDelay={300}
             disableTouchListener={true}
+            arrow
             title={
                 <div 
                     style={{ maxWidth: '350px', padding: '10px 5px' }}
@@ -78,8 +78,8 @@ export default function AnimeItem({mal_id, title, images, score, type, synopsis,
 
     let animeTitle = title;
 
-    if (animeTitle.length > 36) {
-        animeTitle = animeTitle.substring(0, 36) + '...';
+    if (animeTitle.length > 31) {
+        animeTitle = animeTitle.substring(0, 31) + '...';
     }
   
     return (

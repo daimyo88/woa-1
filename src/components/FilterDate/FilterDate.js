@@ -1,23 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Typography } from '@mui/material';
-import { useTheme } from '@emotion/react';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+
 
 import { AnimeListContext } from '../../context/anime-list-context';
+import { parseISO } from 'date-fns';
 
 export default function FilterSelect({ title, value, options, changeHandler}) {
-    const theme = useTheme();
     const { setPage } = useContext(AnimeListContext);
 
-    const [svalue, setSValue] = React.useState(new Date('2014-08-18T21:11:54'));
-
     const handleChange = (newValue) => {
-      setSValue(newValue);
+        changeHandler(newValue);
+        setPage(1);
     };
 
+    const resetDate = () => {
+        changeHandler(null);
+        setPage(1);  
+    }
 
     return (
         <>
@@ -31,11 +37,25 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
                 disableHighlightToday
-                inputFormat="dd/MM/yyyy"
-                value={svalue}
+                inputFormat="yyyy"
+                value={value}
                 onChange={handleChange}
-                openTo="month"
-                renderInput={(params) => <TextField {...params} />}
+                views={['year']}
+                reduceAnimations
+                minDate={parseISO('1917-01-01')}
+                maxDate={parseISO('2030-12-31')}
+                renderInput={(params) => 
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexWrap: 'nowrap'
+                        }}
+                    >
+                        <TextField size="small" {...params} />
+                        <IconButton onClick={ resetDate }>
+                            <CloseIcon color="primary"/>
+                        </IconButton>
+                    </Box>}
             />
             </LocalizationProvider>
         </>

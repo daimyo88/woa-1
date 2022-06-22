@@ -22,7 +22,7 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
             </Typography>
             <FormControl 
                 sx={{ 
-                    minWidth: 190,
+                    width: '100%',
                     '@media(max-width: 546px)': {
                         display: 'flex',
                         justifyContent: 'center'

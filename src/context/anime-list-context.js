@@ -30,7 +30,9 @@ const AnimeListContextProvider = ({ children }) => {
       genres: selectedGenres,
       type,
       rating,
-      status
+      status,
+      startDate,
+      endDate
     }
     const fetchAnime = async () => {
       try {
@@ -46,7 +48,7 @@ const AnimeListContextProvider = ({ children }) => {
       }
     }
     fetchAnime(options);
-  },[searchQuery, page, sort, selectedGenres, type, rating, status]);
+  },[searchQuery, page, sort, selectedGenres, type, rating, status, startDate, endDate]);
 
   useEffect(() => {
     const fetchAnimeGenres = async () => {

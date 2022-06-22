@@ -81,7 +81,7 @@ export const TYPE_OPTIONS = [
       value: 'pg13'
     },
     {
-      title: 'R - 17+ (violence & profanity)',
+      title: 'R - 17+ (violence/profanity)',
       value: 'r17'
     },
     {
