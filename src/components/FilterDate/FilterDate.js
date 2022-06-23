@@ -44,6 +44,7 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
                 reduceAnimations
                 minDate={parseISO('1917-01-01')}
                 maxDate={parseISO('2030-12-31')}
+                type="contained"
                 renderInput={(params) => 
                     <Box
                         sx={{

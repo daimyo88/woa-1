@@ -6,6 +6,7 @@ import getAnimeGenres from '../services/getAnimeGenres';
 const AnimeListContext = createContext({});
 
 const AnimeListContextProvider = ({ children }) => {
+  const [apiError, setApiError] = useState(false);
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,6 +22,18 @@ const AnimeListContextProvider = ({ children }) => {
   const [status, setStatus] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [sfw, setSfw] = useState(false);
+
+  const resetFilters = () => {
+    setPage(1);
+    setSelectedGenres([]);
+    setType('');
+    setRating('');
+    setStatus('');
+    setStartDate(null);
+    setEndDate(null);
+    setSfw(false);
+  }
 
   useEffect(() => {
     const options = {
@@ -32,11 +45,14 @@ const AnimeListContextProvider = ({ children }) => {
       rating,
       status,
       startDate,
-      endDate
+      endDate,
+      sfw,
+      errorHandler: setApiError
     }
     const fetchAnime = async () => {
       try {
         setLoading(true);
+        setApiError(false);
         const anime = await getAnimeAll(options);
         setAnimeList(anime?.data?.data);
         setCount(anime?.data?.pagination?.items?.total);
@@ -48,10 +64,12 @@ const AnimeListContextProvider = ({ children }) => {
       }
     }
     fetchAnime(options);
-  },[searchQuery, page, sort, selectedGenres, type, rating, status, startDate, endDate]);
+  },[searchQuery, page, sort, selectedGenres, type, rating, status, startDate, endDate, sfw]);
 
   useEffect(() => {
     const fetchAnimeGenres = async () => {
+      // JIKAN API allows only 3 requests per second. React renders twice in development mode 
+      // so it causes API errors
       setTimeout(async () => {
           try {
             const genresList = await getAnimeGenres();
@@ -64,6 +82,12 @@ const AnimeListContextProvider = ({ children }) => {
     }
     fetchAnimeGenres();
   }, []);
+
+  useEffect(() => {
+      if(!advancedSearch && (selectedGenres.length || type || rating || status || startDate || endDate || sfw)) {
+        resetFilters();
+      }
+  }, [advancedSearch, selectedGenres, type, rating, status, startDate, endDate, sfw]);
 
   const dataState = {
     count,
@@ -90,7 +114,12 @@ const AnimeListContextProvider = ({ children }) => {
     startDate,
     setStartDate,
     endDate,
-    setEndDate
+    setEndDate,
+    sfw,
+    setSfw,
+    resetFilters,
+    apiError,
+    setApiError
   };  
 
   return (

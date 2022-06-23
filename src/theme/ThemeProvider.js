@@ -12,6 +12,11 @@ export default function Theme({children}) {
 
     const theme = createTheme({
         components: {
+          MuiCssBaseline: {
+            styleOverrides: {
+                fontFamily: 'arial',
+            }
+          },
           MuiButton: {
             styleOverrides: {
               root: {
@@ -63,6 +68,27 @@ export default function Theme({children}) {
               },
             }     
           },
+          MuiDialogActions: {
+            styleOverrides: {
+              root: {
+                  background: themeMode.mode === 'light' ? '#e5d9f3' : '#cccccc'
+              },
+            }  
+          },
+          MuiDialog: {
+            styleOverrides: {
+              paper: {
+                  background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'
+              },
+            }  
+          },
+          MuiPickersToolbar: {
+            styleOverrides: {
+              root: {
+                  background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'
+              },
+            }  
+          },
           MuiCalendarPicker: {
             styleOverrides: {
               root: {
@@ -100,9 +126,12 @@ export default function Theme({children}) {
                 fontSize: 18,
                 fontWeight: 600,
                 marginBottom: '10px',
+                [breakpoints.down('sm')]: {
+                  fontSize: 16,
+                },
             },
             fontFamily: [
-                'Roboto',
+                'Roboto Flex',
                 'sans-serif',
             ].join(','),
         },

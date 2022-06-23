@@ -28,7 +28,7 @@ export default function FilterGenres() {
                 Genres
             </Typography>
             <Grid container spacing={1}>
-                { genres.map(({mal_id, name}) => {
+                { genres?.map(({mal_id, name}) => {
                     const variant = selectedGenres.includes(mal_id) ? "filled" : "outlined";
                     return (
                         <Grid key={mal_id} item>
