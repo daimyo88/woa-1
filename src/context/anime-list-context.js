@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { createContext, useState } from "react";
+import { useLocation } from 'react-router-dom';
+
 import getAnimeAll from '../services/getAnimeAll';
 import getAnimeGenres from '../services/getAnimeGenres';
 
 const AnimeListContext = createContext({});
 
 const AnimeListContextProvider = ({ children }) => {
+  let location = useLocation();
   const [apiError, setApiError] = useState(false);
   const [advancedSearch, setAdvancedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -77,11 +80,14 @@ const AnimeListContextProvider = ({ children }) => {
           } catch(e) {
             console.log(e);
           }
-
         }, process.env.REACT_APP_API_DELAY)
     }
-    fetchAnimeGenres();
-  }, []);
+
+    if(location.pathname === '/search' && !genres.length) {
+      fetchAnimeGenres();
+    }
+    
+  }, [location, genres]);
 
   useEffect(() => {
       if(!advancedSearch && (selectedGenres.length || type || rating || status || startDate || endDate || sfw)) {

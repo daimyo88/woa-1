@@ -9,6 +9,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { useTheme } from '@emotion/react';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 
 const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip arrow {...props} classes={{ popper: className }} />
@@ -20,16 +21,6 @@ const StyledTooltip = styled(({ className, ...props }) => (
       backgroundColor: theme.palette.tooltipBackground,
     },
   }));
-
-const AdditionalInfo = ({label, text, color = 'primary'}) => {
-    const theme = useTheme();
-    const textColor = color === 'primary' ? theme.palette.primary.light : theme.palette.secondary.light;
-    return (
-        <Typography paragraph sx={{m:0}} color="text.primary">
-            <span style={{color: textColor }}>{ label } </span>{ text }
-        </Typography>
-    )
-}
 
 const HoverDescription = ({ title, synopsis, genres, rating, aired, children }) => {
     const synopsisArr = synopsis?.split('.') || [];

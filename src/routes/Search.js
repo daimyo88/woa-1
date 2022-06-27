@@ -21,7 +21,6 @@ export default function SearchPage() {
             { !loading && !apiError && !!animeList?.length && <AnimeList /> }
             { !loading && !apiError && !animeList?.length && <NothingFoundMessage />}
             { !loading && apiError && <ApiErrorMessage />}
-            <AnimeList />
             <AnimePagination />
         </>
     )

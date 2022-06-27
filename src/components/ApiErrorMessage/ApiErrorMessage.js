@@ -14,8 +14,7 @@ export default function ApiErrorMessage() {
                     color="secondary"
                     sx={{mt: '20px', fontWeight: '400'}}
                 >
-                    API error :( <br />
-                    (probably too many requests)
+                    API error :(
                 </Typography>
             </Grid>
         </Grid>

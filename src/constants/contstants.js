@@ -112,3 +112,5 @@ export const STATUS_OPTIONS = [
       value: 'upcoming'
     },
 ]
+
+export const ANIME_SINGLE_TABS = ['Info', 'Related','External links'];

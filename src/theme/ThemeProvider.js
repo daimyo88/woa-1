@@ -103,6 +103,28 @@ export default function Theme({children}) {
               },
               filled: {
                 border: '1px solid transparent'
+              },
+              label: {
+                lineHeight: '16px'
+              }
+            }
+          },
+          MuiTab: {
+            styleOverrides: {
+              textColorPrimary: {
+                color: themeMode.mode === 'light' ? 'rgb(30, 30, 30)' : '#ffffff'
+              },
+              root: {
+                '&.Mui-selected': {
+                  color: '#804ac9'
+                }
+              }
+            }
+          },
+          MuiTabs: {
+            styleOverrides: {
+              indicator: {
+                backgroundColor: '#804ac9'
               }
             }
           }
