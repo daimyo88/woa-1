@@ -5,14 +5,14 @@ import Stack from '@mui/material/Stack';
 
 import { AnimeListContext } from '../../context/anime-list-context';
 
+const paginationSize = window.innerWidth > 768 ? "large" : "normal";
+
 export default function AnimePagination() {
     const {page, setPage, pages} = useContext(AnimeListContext);
 
     const handleChange = (event, value) => {
       setPage(value);
     };
-
-    const paginationSize = window.innerWidth > 768 ? "large" : "normal";
 
     const pagination = (pages > 1) ? (
         <Grid container justifyContent="center" sx={{mb: '20px'}}>

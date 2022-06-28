@@ -8,9 +8,9 @@ export default function AnimeInfo(props) {
     const scoreString = score ? `${score} / 10` : 'N/A';
     return (
         <>
-            <Typography paragraph>
+            { synopsis && <Typography paragraph>
                 { synopsis }
-            </Typography>
+            </Typography> }
             <Grid container>
                 <Grid item lg={6} xs={12}>
                     { !!genres.length && <AdditionalInfo label="Genres: " text={ genresArr.join(', ') } /> }

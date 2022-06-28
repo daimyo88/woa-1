@@ -113,4 +113,4 @@ export const STATUS_OPTIONS = [
     },
 ]
 
-export const ANIME_SINGLE_TABS = ['Info', 'Related','External links'];
+export const ANIME_SINGLE_TABS = ['Info', 'Related','Gallery','External links'];

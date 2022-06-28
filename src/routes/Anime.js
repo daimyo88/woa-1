@@ -11,6 +11,9 @@ import AnimeTabs from '../components/AnimeTabs/AnimeTabs';
 import { Paper } from '@mui/material';
 
 import AnimeInfo from '../components/AnimeInfo/AnimeInfo';
+import RelatedInfo from '../components/RelatedInfo/RelatedInfo';
+import AnimeGallery from '../components/AnimeGallery/AnimeGallery';
+import ExternalLinksInfo from '../components/ExternalLinksInfo/ExternalLinksInfo';
 import AnimeInfoLoader from '../components/AnimeInfoLoader/AnimeInfoLoader';
 import ApiErrorMessage from '../components/ApiErrorMessage/ApiErrorMessage';
 
@@ -29,6 +32,7 @@ export default function Anime() {
                     try {
                         const animeData = await getAnime(params.id, setError);
                         setAnime(animeData?.data?.data);
+                        setTab(0);
                     } finally {
                         setLoading(false);
                     }
@@ -37,8 +41,6 @@ export default function Anime() {
 
         fetchAnime();
     }, [params]);
-
-    console.log(anime);
 
     return (
         <>
@@ -79,8 +81,9 @@ export default function Anime() {
                                     score= { anime?.score }
                                 />
                             }
-                            { tab === 1 && <>related</>}
-                            { tab === 2 && <>external</>}
+                            { tab === 1 && <RelatedInfo items={anime?.relations} />}
+                            { tab === 2 && <AnimeGallery id={anime?.mal_id} />}
+                            { tab === 3 && <ExternalLinksInfo items={anime?.external} />}
                         </Paper>
                     </Grid>
                 </Grid>

@@ -69,8 +69,8 @@ export default function AnimeItem({mal_id, title, images, score, type, synopsis,
 
     let animeTitle = title;
 
-    if (animeTitle.length > 31) {
-        animeTitle = animeTitle.substring(0, 31) + '...';
+    if (animeTitle.length > 30) {
+        animeTitle = animeTitle.substring(0, 30) + '...';
     }
   
     return (

@@ -127,6 +127,16 @@ export default function Theme({children}) {
                 backgroundColor: '#804ac9'
               }
             }
+          },
+          MuiTabScrollButton: {
+            styleOverrides: {
+              root: {
+                color: themeMode.mode === 'light' ? 'rgb(30, 30, 30)' : '#ffffff',
+                '&.Mui-disabled': {
+                  opacity: 0.3
+                }
+              }
+            }
           }
         },
         typography: {

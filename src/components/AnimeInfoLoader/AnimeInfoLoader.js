@@ -2,12 +2,13 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 
+const tabsBlank = [0, 1, 2, 3];
 const textBlank = [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 export default function AnimeInfoLoader() {
     return (
         <Grid container sx={{my: '20px'}}>
-            <Grid item xs={12} sx={{ p: '15px', mb: '10px'}}>
+            <Grid item xs={12} sx={{ pb: '15px', mb: '10px'}}>
                 <Skeleton 
                     animation="wave" 
                     variant="text" 
@@ -37,27 +38,15 @@ export default function AnimeInfoLoader() {
                 })}
             >                 
                 <Grid container>
-                    <Grid item sx={{p: '12px 16px'}}>
-                        <Skeleton 
-                            animation="wave" 
-                            variant="text" 
-                            sx={{ width: '60px' }} 
-                        />
-                    </Grid>
-                    <Grid item sx={{p: '12px 16px'}}>
-                        <Skeleton 
-                            animation="wave" 
-                            variant="text" 
-                            sx={{ width: '60px' }} 
-                        />
-                    </Grid>
-                    <Grid item sx={{p: '12px 16px'}}>
-                        <Skeleton 
-                            animation="wave" 
-                            variant="text" 
-                            sx={{ width: '60px' }} 
-                        />
-                    </Grid>
+                    { tabsBlank.map(tab => (
+                        <Grid key={tab} item sx={{p: '12px 16px', maxWidth: '25%'}}>
+                            <Skeleton 
+                                animation="wave" 
+                                variant="text" 
+                                sx={{ width: '70px', maxWidth: '100%' }} 
+                            />
+                        </Grid>
+                    ))}
                 </Grid>
                 { textBlank.map(el => {
                     return (

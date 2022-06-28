@@ -6,8 +6,8 @@ export default function AdditionalInfo({label, text, color = 'primary'}) {
     const theme = useTheme();
     const textColor = color === 'primary' ? theme.palette.primary.light : theme.palette.secondary.light;
     return (
-        <Typography paragraph sx={{my:'2px'}} color="text.primary">
-            <span style={{color: textColor }}>{ label } </span>{ text }
+        <Typography paragraph sx={{mb:'2px'}} color="text.primary">
+            <span style={{display: 'inline-block', minWidth: '60px', color: textColor }}>{ label } </span>{ text }
         </Typography>
     )
 }
