@@ -18,15 +18,14 @@ export default function RelatedInfo({items}) {
                     { item?.entry?.map((entry, _i) => {
                         const url = entry?.type === 'anime' ? `/anime/${entry?.mal_id}` : entry?.url;
                         const type = entry?.type === 'anime' ? '' : ` (${entry?.type})`;
-                        const delimeter = _i < item?.entry?.length - 1 ? ', ' : '';
-                        const linkText = entry?.name + type + delimeter;
+                        const linkText = entry?.name + type;
                         const link = entry?.type === 'anime' ? 
                             <StyledInternalLink url={url} text={linkText} /> : 
                             <StyledExternalLink url={url} text={linkText} />;
                         return (
-                            <React.Fragment key={entry?.mal_id}>
+                            <span style={{display: 'block'}} key={entry?.mal_id}>
                                 { link }
-                            </React.Fragment>
+                            </span>
                         )
                     })}
                 </Typography>

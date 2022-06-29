@@ -32,7 +32,7 @@ export default function AnimeFilters() {
     } = useContext(AnimeListContext);
 
     return (
-        <Paper sx={{ mb: '5px', p: '10px 15px'}}>
+        <Paper sx={{ mb: '5px', p: '15px'}}>
             <Grid container spacing={1}>
                 <Grid item xs={12} sx={{mb: '10px'}}>
                     <FilterGenres />

@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const StyledLink = styled((props) => (
-        <a {...props } />
-    ))(({theme}) => ({
+const StyledLink = styled.a(({theme}) => ({
         color: theme.palette.text.primary,
-        textDecoration: 'none',
         transition: '0.3s',
         '&:hover': {
             color: theme.palette.secondary.light,

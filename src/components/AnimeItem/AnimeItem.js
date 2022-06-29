@@ -7,62 +7,7 @@ import Chip from '@mui/material/Chip';
 import { Box } from '@material-ui/core';
 import StarIcon from '@mui/icons-material/Star';
 import { useTheme } from '@emotion/react';
-import { styled } from '@mui/material/styles';
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
-
-const StyledTooltip = styled(({ className, ...props }) => (
-    <Tooltip arrow {...props} classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: theme.palette.tooltipBackground,
-    },
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: theme.palette.tooltipBackground,
-    },
-  }));
-
-const HoverDescription = ({ title, synopsis, genres, rating, aired, children }) => {
-    const synopsisArr = synopsis?.split('.') || [];
-    let shortDescpription = '';
-
-    synopsisArr.forEach((sentence, i) => {
-        if(i < 2) {
-            shortDescpription+= sentence + '.';  
-        }
-    });
-
-    if(shortDescpription) {
-        shortDescpription+= '..';
-    }
-
-    const genresArr = genres?.map(genre => genre.name);
-
-    return (
-        <StyledTooltip
-            enterDelay={300}
-            enterNextDelay={300}
-            disableTouchListener={true}
-            arrow
-            title={
-                <div 
-                    style={{ maxWidth: '350px', padding: '10px 5px' }}
-                >
-                    <Typography color="secondary" variant="h3">{ title }</Typography>
-                    { shortDescpription && <Typography paragraph color="text.primary">
-                        { shortDescpription }
-                    </Typography> }
-                    { !!genresArr.length && <AdditionalInfo label="Genres: " text={ genresArr.join(', ') } /> }
-                    { rating && <AdditionalInfo color="secondary" label="Rating: " text={ rating } /> }
-                    { aired && <AdditionalInfo label="Aired: " text={ aired } /> }
-                </div>                
-            }
-            placement="left"
-        >
-            { children }
-        </StyledTooltip>
-    )
-}
+import AnimeHoverDescription from '../AnimeHoverDescription/AnimeHoverDescription';
 
 export default function AnimeItem({mal_id, title, images, score, type, synopsis, genres, rating, aired}) {
     const theme = useTheme();
@@ -81,7 +26,7 @@ export default function AnimeItem({mal_id, title, images, score, type, synopsis,
                 p: '0 12px',
                 mb: '24px'
             }}>
-            <HoverDescription 
+            <AnimeHoverDescription 
                 title={title}
                 synopsis={synopsis} 
                 genres={genres}
@@ -164,7 +109,7 @@ export default function AnimeItem({mal_id, title, images, score, type, synopsis,
                         </Grid>
                     </Paper>
                 </Link>
-            </HoverDescription>
+            </AnimeHoverDescription>
         </Grid>
     )
 }

@@ -3,15 +3,14 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import SearchIcon from '@mui/icons-material/Search';
-import Button from '@mui/material/Button';
-import { Link } from "react-router-dom";
+import { Box } from '@mui/material';
 
 import lightPicture from '../assets/img/hanekawa_double_reverse.png';
 import darkPicture from '../assets/img/hanekawa_double.png';
 import { ThemeModeContext } from "../context/theme-mode-context";
 import StyledLink from '../components/StyledLink/StyledLink';
 import HighlightedTitle from '../components/HighlightedTitle/HighlightedTitle';
-import { Box } from '@mui/material';
+import CtaLink from '../components/CtaLink/CtaLink';
 
 export default function Home(){
     const {themeMode} = useContext(ThemeModeContext);
@@ -44,20 +43,7 @@ export default function Home(){
                         </Typography>
                     </Paper>
                 </Grid>
-                <Grid container justifyContent="center">
-                    <Grid item>
-                        <Button 
-                            component={Link}
-                            to="/search"
-                            variant="contained" 
-                            color="secondary"
-                            size="large"
-                            endIcon={<SearchIcon />}
-                    >
-                        ANIME SEARCH
-                    </Button> 
-                    </Grid>
-                </Grid>
+                <CtaLink url='/search' icon={<SearchIcon />} text='ANIME SEARCH' />
             </Grid>
         </Box>
     )

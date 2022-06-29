@@ -6,7 +6,6 @@ const StyledLink = styled((props) => (
         <Link {...props } />
     ))(({theme}) => ({
         color: theme.palette.text.primary,
-        textDecoration: 'none',
         transition: '0.3s',
         '&:hover': {
             color: theme.palette.secondary.light,

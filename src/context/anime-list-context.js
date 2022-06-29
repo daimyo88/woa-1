@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { createContext, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
@@ -27,16 +27,18 @@ const AnimeListContextProvider = ({ children }) => {
   const [endDate, setEndDate] = useState(null);
   const [sfw, setSfw] = useState(false);
 
-  const resetFilters = () => {
-    setPage(1);
-    setSelectedGenres([]);
-    setType('');
-    setRating('');
-    setStatus('');
-    setStartDate(null);
-    setEndDate(null);
-    setSfw(false);
-  }
+  const resetFilters = useCallback(() => {
+    if(selectedGenres.length || type || rating || status || startDate || endDate || sfw) {
+      setPage(1);
+      setSelectedGenres([]);
+      setType('');
+      setRating('');
+      setStatus('');
+      setStartDate(null);
+      setEndDate(null);
+      setSfw(false);
+    }
+  },[selectedGenres, type, rating, status, startDate, endDate, sfw]);
 
   useEffect(() => {
     const options = {
@@ -75,8 +77,8 @@ const AnimeListContextProvider = ({ children }) => {
       // so it causes API errors
       setTimeout(async () => {
           try {
-            const genresList = await getAnimeGenres();
-            setGenres(genresList?.data?.data);
+            const response = await getAnimeGenres();
+            setGenres(response?.data?.data);
           } catch(e) {
             console.log(e);
           }
@@ -93,7 +95,7 @@ const AnimeListContextProvider = ({ children }) => {
       if(!advancedSearch && (selectedGenres.length || type || rating || status || startDate || endDate || sfw)) {
         resetFilters();
       }
-  }, [advancedSearch, selectedGenres, type, rating, status, startDate, endDate, sfw]);
+  }, [resetFilters, advancedSearch, selectedGenres, type, rating, status, startDate, endDate, sfw]);
 
   const dataState = {
     count,

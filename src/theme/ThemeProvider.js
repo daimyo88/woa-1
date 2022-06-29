@@ -149,7 +149,8 @@ export default function Theme({children}) {
             },
             h2: {
                 fontSize: 22,
-                fontWeight: 600,
+                fontWeight: 400,
+                marginBottom: '15px',
                 [breakpoints.down('sm')]: {
                   fontSize: 20,
                 },

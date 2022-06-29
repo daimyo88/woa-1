@@ -25,7 +25,7 @@ export default function AnimeGallery({id}) {
 
         }
         getPictures();
-    },[]);
+    },[id]);
 
     return (
         <>
@@ -35,7 +35,7 @@ export default function AnimeGallery({id}) {
             { !loading && !error &&  !!pictures.length && <ImageList variant="woven" cols={cols} gap={8}>
                     { pictures?.map((picture, i) => (
                         <ImageListItem key={i}>
-                            <img src={ picture?.jpg?.large_image_url } alt={`gallery picture ${i}`} />
+                            <img src={ picture?.jpg?.large_image_url } alt={`gallery ${i}`} />
                         </ImageListItem>
                     ))}
             </ImageList> }
