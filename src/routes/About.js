@@ -5,7 +5,8 @@ import PageTitle from '../components/PageTitle/PageTitle';
 import StyledExternalLink from '../components/StyledExternalLink/StyledExternalLink';
 import CtaLink from '../components/CtaLink/CtaLink';
 
-export default function Page(){
+export default function Page() {
+
     return (
         <>
             <PageTitle text="About" />

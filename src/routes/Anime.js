@@ -25,6 +25,10 @@ export default function Anime() {
     let params = useParams();
 
     useEffect(() => {
+        window.scrollTo({ top: 0 });
+    },[]);
+
+    useEffect(() => {
         const fetchAnime = async () => {
             // JIKAN API allows only 3 requests per second. React renders twice in development mode 
             // so it causes API errors
