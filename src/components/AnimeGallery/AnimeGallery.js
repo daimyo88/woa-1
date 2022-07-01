@@ -5,7 +5,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 
 import AnimeGalleryLoader from '../AnimeGalleryLoader/AnimeGalleryLoader';
 import NothingFoundMessage from '../NothingFoundMessage/NothingFoundMessage';
-import ApiErrorMessage from '../ApiErrorMessage/ApiErrorMessage';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const cols = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
 
@@ -31,7 +31,7 @@ export default function AnimeGallery({id}) {
         <>
             { loading && !error && <AnimeGalleryLoader />}
             { !loading && !error && !pictures.length && <NothingFoundMessage />}
-            { !loading && error && <ApiErrorMessage />}
+            { !loading && error && <ErrorMessage text="API error :(" />}
             { !loading && !error &&  !!pictures.length && <ImageList variant="woven" cols={cols} gap={8}>
                     { pictures?.map((picture, i) => (
                         <ImageListItem key={i}>

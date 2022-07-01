@@ -6,7 +6,7 @@ import AnimePagination from '../components/AnimePagination/AnimePagination';
 import AnimeSort from '../components/AnimeSort/AnimeSort';
 import NothingFoundMessage from '../components/NothingFoundMessage/NothingFoundMessage';
 import AnimeListLoader from '../components/AnimeListLoader/AnimeListLoader';
-import ApiErrorMessage from '../components/ApiErrorMessage/ApiErrorMessage';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 
 import { AnimeListContext } from '../context/anime-list-context';
 
@@ -20,7 +20,7 @@ export default function SearchPage() {
             { loading && <AnimeListLoader/> }
             { !loading && !apiError && !!animeList?.length && <AnimeList /> }
             { !loading && !apiError && !animeList?.length && <NothingFoundMessage />}
-            { !loading && apiError && <ApiErrorMessage />}
+            { !loading && apiError && <ErrorMessage text="API error :(" />}
             <AnimePagination />
         </>
     )

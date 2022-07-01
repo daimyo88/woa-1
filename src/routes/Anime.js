@@ -15,7 +15,7 @@ import RelatedInfo from '../components/RelatedInfo/RelatedInfo';
 import AnimeGallery from '../components/AnimeGallery/AnimeGallery';
 import ExternalLinksInfo from '../components/ExternalLinksInfo/ExternalLinksInfo';
 import AnimeInfoLoader from '../components/AnimeInfoLoader/AnimeInfoLoader';
-import ApiErrorMessage from '../components/ApiErrorMessage/ApiErrorMessage';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 
 export default function Anime() {
     const [loading, setLoading] = useState(true);
@@ -49,7 +49,7 @@ export default function Anime() {
     return (
         <>
             <GoBackButtons />
-            { !loading && error && <ApiErrorMessage />}
+            { !loading && error && <ErrorMessage text="API error :(" />}
             { loading && !error && <AnimeInfoLoader />}
             { !loading && !error && anime && <>
                 <PageTitle text={anime.title} />

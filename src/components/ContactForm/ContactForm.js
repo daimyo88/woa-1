@@ -75,6 +75,7 @@ export default function ContactForm(props) {
                     <Grid container justifyContent="center" style={{'marginTop':'20px'}}>
                         <LoadingButton
                             type="submit" 
+                            size="large"
                             variant="contained" 
                             color="secondary"
                             endIcon={<SendIcon />}

@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import errorPicture from '../../assets/img/shinobu_pout.png';
 
-export default function ApiErrorMessage() {
+export default function ApiErrorMessage({text}) {
     return (
         <Grid container justifyContent="center">
             <Grid item sx={{p: '50px 20px'}}>
@@ -14,7 +14,7 @@ export default function ApiErrorMessage() {
                     color="secondary"
                     sx={{mt: '20px', fontWeight: '400'}}
                 >
-                    API error :(
+                    { text }
                 </Typography>
             </Grid>
         </Grid>
