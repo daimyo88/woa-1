@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -16,4 +17,8 @@ export default function HighlightedTitle({ text }) {
     return (
         <StyledTitle>{text}</StyledTitle>
     )
+}
+
+HighlightedTitle.propTypes = {
+    text: PropTypes.string.isRequired,
 }

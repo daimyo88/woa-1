@@ -40,7 +40,7 @@ const AccordionSummary = styled((props) => (
     },
   }));
 
-  export default function SearchPage() {
+  export default function AnimeSearch() {
     const {advancedSearch, setAdvancedSearch } = useContext(AnimeListContext);
 
     return (

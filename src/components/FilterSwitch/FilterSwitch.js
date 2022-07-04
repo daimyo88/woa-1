@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import Switch from '@mui/material/Switch';
 
 import { AnimeListContext } from '../../context/anime-list-context';
 
-export default function FilterSelect({ title, value, changeHandler}) {
+export default function FilterSwitch({ title, value, changeHandler}) {
     const { setPage } = useContext(AnimeListContext);
 
     const handleChange = (e) => {
@@ -28,4 +29,10 @@ export default function FilterSelect({ title, value, changeHandler}) {
             />
         </>
     )
+}
+
+FilterSwitch.propTypes = {
+    title: PropTypes.string.isRequired,
+    value: PropTypes.bool,
+    changeHandler: PropTypes.func,
 }

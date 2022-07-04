@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import Typography from '@mui/material/Typography';
 
@@ -10,4 +11,10 @@ export default function AdditionalInfo({label, text, color = 'primary'}) {
             <span style={{display: 'inline-block', minWidth: '60px', color: textColor }}>{ label } </span>{ text }
         </Typography>
     )
+}
+
+AdditionalInfo.propTypes = {
+    label: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    color: PropTypes.string,
 }

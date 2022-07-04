@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { PAGES } from '../../constants/contstants';
 import { Box } from '@mui/system';
 
-export default function MenuNavigation(props) {
+export default function MenuNavigation() {
   const theme = useTheme();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 

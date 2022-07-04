@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import StyledTooltip from '../StyledTooltip/StyledTooltip';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
@@ -24,7 +25,6 @@ export default function AnimeHoverDescription({ title, synopsis, genres, rating,
             enterDelay={300}
             enterNextDelay={300}
             disableTouchListener={true}
-            arrow
             title={
                 <div 
                     style={{ maxWidth: '350px', padding: '10px 5px' }}
@@ -43,4 +43,13 @@ export default function AnimeHoverDescription({ title, synopsis, genres, rating,
             { children }
         </StyledTooltip>
     )
+}
+
+AnimeHoverDescription.propTypes = {
+    title: PropTypes.string,
+    synopsis: PropTypes.string,
+    genres: PropTypes.array,
+    rating: PropTypes.string,
+    aired: PropTypes.string,
+    children: PropTypes.element
 }

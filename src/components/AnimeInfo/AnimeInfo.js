@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Typography } from '@mui/material';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 
@@ -25,4 +26,14 @@ export default function AnimeInfo(props) {
             </Grid>
         </>
     )
+}
+
+AnimeInfo.propTypes = {
+    synopsis: PropTypes.string,
+    genres: PropTypes.array,
+    rating: PropTypes.string,
+    aired: PropTypes.string,
+    score: PropTypes.number,
+    type: PropTypes.string,
+    status: PropTypes.string,
 }

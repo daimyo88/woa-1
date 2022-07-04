@@ -85,7 +85,7 @@ const AnimeListContextProvider = ({ children }) => {
         }, process.env.REACT_APP_API_DELAY)
     }
 
-    if(location.pathname === '/search' && !genres.length) {
+    if(location.pathname === '/search' && !genres?.length) {
       fetchAnimeGenres();
     }
     

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import Typography from '@mui/material/Typography';
 import StyledInternalLink from '../StyledInternalLink/StyledInternalLink';
@@ -33,4 +34,8 @@ export default function RelatedInfo({items}) {
         })}
         </>
     )
+}
+
+RelatedInfo.propTypes = {
+    items: PropTypes.array,
 }

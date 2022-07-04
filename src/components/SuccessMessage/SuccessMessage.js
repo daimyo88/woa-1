@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import successPicture from '../../assets/img/hachikuji_smile.png';
@@ -19,4 +20,8 @@ export default function SuccessMessage({text}) {
             </Grid>
         </Grid>
     )
+}
+
+SuccessMessage.propTypes = {
+    text: PropTypes.string.isRequired,
 }

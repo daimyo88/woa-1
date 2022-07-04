@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
 const StyledLink = styled.a(({theme}) => ({
@@ -13,4 +14,9 @@ export default function StyledExternalLink({url, text}) {
     return (
         <StyledLink href={url} target="blank" rel="noopener">{text}</StyledLink>
     )
+}
+
+StyledExternalLink.propTypes = {
+    url: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -20,4 +21,8 @@ export default function PageTitle({ text }) {
     return (
         <StyledTitle theme={theme}>{text}</StyledTitle>
     )
+}
+
+PageTitle.propTypes = {
+    text: PropTypes.string.isRequired,
 }

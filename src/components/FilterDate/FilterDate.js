@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -8,11 +9,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 
-
 import { AnimeListContext } from '../../context/anime-list-context';
 import { parseISO } from 'date-fns';
 
-export default function FilterSelect({ title, value, options, changeHandler}) {
+export default function FilterSelect({ title, value, changeHandler}) {
     const { setPage } = useContext(AnimeListContext);
 
     const handleChange = (newValue) => {
@@ -61,4 +61,10 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
             </LocalizationProvider>
         </>
     )
+}
+
+FilterSelect.propTypes = {
+    title: PropTypes.string.isRequired,
+    value: PropTypes.instanceOf(Date),
+    changeHandler: PropTypes.func,
 }

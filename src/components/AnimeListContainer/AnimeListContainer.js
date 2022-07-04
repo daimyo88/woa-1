@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 
 export default function AnimeListContainer({children}) {
@@ -23,4 +24,11 @@ export default function AnimeListContainer({children}) {
             { children }
         </Grid>
     )
+}
+
+AnimeListContainer.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+      ]),
 }

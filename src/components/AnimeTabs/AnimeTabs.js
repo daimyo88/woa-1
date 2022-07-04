@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
@@ -25,4 +25,10 @@ export default function AnimeTabs(props) {
             })}
         </Tabs>
     )
+}
+
+AnimeTabs.propTypes = {
+    options: PropTypes.array.isRequired,
+    value: PropTypes.number.isRequired,
+    changeHandler: PropTypes.func,
 }

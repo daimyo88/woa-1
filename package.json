@@ -19,6 +19,7 @@
     "formik": "^2.2.9",
     "install": "^0.13.0",
     "npm": "^8.12.2",
+    "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",

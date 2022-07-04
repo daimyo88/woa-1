@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -112,4 +113,16 @@ export default function AnimeItem({mal_id, title, images, score, type, synopsis,
             </AnimeHoverDescription>
         </Grid>
     )
+}
+
+AnimeItem.propTypes = {
+    mal_id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    images: PropTypes.object,
+    score: PropTypes.number,
+    type: PropTypes.string,
+    synopsis: PropTypes.string,
+    genres: PropTypes.array,
+    rating: PropTypes.string,
+    aired: PropTypes.object,
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import getAnimePictures from '../../services/getAnimePictures';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import PropTypes from 'prop-types';
 
 import AnimeGalleryLoader from '../AnimeGalleryLoader/AnimeGalleryLoader';
 import NothingFoundMessage from '../NothingFoundMessage/NothingFoundMessage';
@@ -41,4 +42,8 @@ export default function AnimeGallery({id}) {
             </ImageList> }
         </>
     )
+}
+
+AnimeGallery.propTypes = {
+    id: PropTypes.number.isRequired,
 }

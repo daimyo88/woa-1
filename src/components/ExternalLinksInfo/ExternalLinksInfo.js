@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
 import StyledExternalLink from '../StyledExternalLink/StyledExternalLink';
 import NothingFoundMessage from '../NothingFoundMessage/NothingFoundMessage';
@@ -16,4 +17,8 @@ export default function ExternalLinksInfo({items}) {
             })}
         </>
     )
+}
+
+ExternalLinksInfo.propTypes = {
+    items: PropTypes.array,
 }

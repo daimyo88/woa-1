@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import Select from '@mui/material/Select';
@@ -53,4 +54,11 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
             </FormControl>
         </>
     )
+}
+
+FilterSelect.propTypes = {
+    title: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    options: PropTypes.array,
+    changeHandler: PropTypes.func,
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import styled from '@emotion/styled';
 
@@ -16,4 +17,9 @@ export default function StyledInternalLink({url, text}) {
     return (
         <StyledLink to={url}>{text}</StyledLink>
     )
+}
+
+StyledInternalLink.propTypes = {
+    url: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Grid from '@mui/material/Grid';
@@ -38,7 +39,7 @@ export default function ContactForm(props) {
             formProps => {
 
                 return (
-                <form onSubmit={formProps.handleSubmit} style={{maxWidth: '400px', margin: '0 auto 10px'}}>
+                <form onSubmit={formProps.handleSubmit} style={{maxWidth: '400px', margin: '0 auto 5px'}}>
 
                     <Grid container >
                         <Grid sx={{opacity: 0}} item xs={12}>
@@ -91,4 +92,8 @@ export default function ContactForm(props) {
         }
         </Formik>
     )
+}
+
+ContactForm.propTypes = {
+    submitHandler: PropTypes.func.isRequired,
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -19,4 +20,10 @@ export default function StyledLink({ href, targetBlank, text }) {
     return (
         <Link href={href} target={target}>{text}</Link>
     )
+}
+
+StyledLink.propTypes = {
+    href: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    targetBlank: PropTypes.bool,
 }

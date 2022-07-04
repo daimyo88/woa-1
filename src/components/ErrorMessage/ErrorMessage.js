@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import errorPicture from '../../assets/img/shinobu_pout.png';
 
-export default function ApiErrorMessage({text}) {
+export default function ErrorMessage({text}) {
     return (
         <Grid container justifyContent="center">
             <Grid item sx={{p: '50px 20px'}}>
@@ -19,4 +20,8 @@ export default function ApiErrorMessage({text}) {
             </Grid>
         </Grid>
     )
+}
+
+ErrorMessage.propTypes = {
+    text: PropTypes.string.isRequired,
 }

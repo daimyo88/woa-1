@@ -10,7 +10,7 @@ export default function Page() {
     return (
         <>
             <PageTitle text="About" />
-            <Paper sx={{mb: '15px', p: '15px'}}>
+            <Paper sx={{mb: '15px', p: '15px 15px 20px'}}>
                 <Typography variant="h2" color="secondary">About the project</Typography>
                 <Typography paragraph>This is just a light anime library that is based on data from <StyledExternalLink url="https://myanimelist.net" text="MyAnimeList.net"/> provided 
                 via <StyledExternalLink url="https://docs.api.jikan.moe" text="Jikan REST API"/>. The main goal with this project for me as a developer was harnessing my skills, but on the other hand creating something fun and useful (at least I hope so). 
