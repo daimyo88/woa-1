@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import Grid from '@mui/material/Grid';
-
-import getAnime from '../services/getAnime';
-import GoBackButtons from '../components/GoBackButtons/GoBackButtons';
-import PageTitle from '../components/PageTitle/PageTitle';
-
-import { ANIME_SINGLE_TABS } from '../constants/contstants';
-import AnimeTabs from '../components/AnimeTabs/AnimeTabs';
 import { Paper } from '@mui/material';
 
-import AnimeInfo from '../components/AnimeInfo/AnimeInfo';
-import RelatedInfo from '../components/RelatedInfo/RelatedInfo';
-import AnimeGallery from '../components/AnimeGallery/AnimeGallery';
-import ExternalLinksInfo from '../components/ExternalLinksInfo/ExternalLinksInfo';
-import AnimeInfoLoader from '../components/AnimeInfoLoader/AnimeInfoLoader';
-import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import { ANIME_SINGLE_TABS } from '../constants/contstants';
+
+import getAnime from '../services/getAnime';
+import AnimeTabs from '../components/navigations/AnimeTabs/AnimeTabs';
+import GoBackButtons from '../components/buttons/GoBackButtons/GoBackButtons';
+import PageTitle from '../components/text/PageTitle/PageTitle';
+import AnimeInfo from '../components/dataDisplay/AnimeInfo/AnimeInfo';
+import RelatedInfo from '../components/dataDisplay/RelatedInfo/RelatedInfo';
+import AnimeGallery from '../components/dataDisplay/AnimeGallery/AnimeGallery';
+import ExternalLinksInfo from '../components/dataDisplay/ExternalLinksInfo/ExternalLinksInfo';
+import AnimeInfoLoader from '../components/loaders/AnimeInfoLoader/AnimeInfoLoader';
+import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 
 export default function Anime() {
     const [loading, setLoading] = useState(true);
@@ -87,7 +86,7 @@ export default function Anime() {
                             }
                             { tab === 1 && <RelatedInfo items={anime?.relations} />}
                             { tab === 2 && <AnimeGallery id={anime?.mal_id} />}
-                            { tab === 3 && <ExternalLinksInfo items={anime?.external} />}
+                            { tab === 3 && <ExternalLinksInfo items={anime?.external} originalUrl = {anime?.url} />}
                         </Paper>
                     </Grid>
                 </Grid>

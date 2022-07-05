@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import PageTitle from '../components/PageTitle/PageTitle';
-import AnimeSearch from '../components/AnimeSearch/AnimeSearch';
-import AnimeList from '../components/AnimeList/AnimeList';
-import AnimePagination from '../components/AnimePagination/AnimePagination';
-import AnimeSort from '../components/AnimeSort/AnimeSort';
-import NothingFoundMessage from '../components/NothingFoundMessage/NothingFoundMessage';
-import AnimeListLoader from '../components/AnimeListLoader/AnimeListLoader';
-import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import PageTitle from '../components/text/PageTitle/PageTitle';
+import AnimeSearch from '../components/ui/AnimeSearch/AnimeSearch';
+import AnimeList from '../components/structural/AnimeList/AnimeList';
+import AnimePagination from '../components/buttons/AnimePagination/AnimePagination';
+import AnimeSort from '../components/ui/AnimeSort/AnimeSort';
+import AnimeListLoader from '../components/loaders/AnimeListLoader/AnimeListLoader';
+import NothingFoundMessage from '../components/messages/NothingFoundMessage/NothingFoundMessage';
+import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 
 import { AnimeListContext } from '../context/anime-list-context';
 

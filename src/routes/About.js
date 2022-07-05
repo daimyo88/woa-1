@@ -1,9 +1,9 @@
 import React from 'react';
 import { Paper, Typography } from '@mui/material';
 
-import PageTitle from '../components/PageTitle/PageTitle';
-import StyledExternalLink from '../components/StyledExternalLink/StyledExternalLink';
-import CtaLink from '../components/CtaLink/CtaLink';
+import PageTitle from '../components/text/PageTitle/PageTitle';
+import StyledExternalLink from '../components/text/StyledExternalLink/StyledExternalLink';
+import CtaLink from '../components/buttons/CtaLink/CtaLink';
 
 export default function Page() {
 
@@ -13,7 +13,7 @@ export default function Page() {
             <Paper sx={{mb: '15px', p: '15px 15px 20px'}}>
                 <Typography variant="h2" color="secondary">About the project</Typography>
                 <Typography paragraph>This is just a light anime library that is based on data from <StyledExternalLink url="https://myanimelist.net" text="MyAnimeList.net"/> provided 
-                via <StyledExternalLink url="https://docs.api.jikan.moe" text="Jikan REST API"/>. The main goal with this project for me as a developer was harnessing my skills, but on the other hand creating something fun and useful (at least I hope so). 
+                via <StyledExternalLink url="https://docs.api.jikan.moe" text="Jikan REST API"/>. The main goal with this project for me as a developer was to harness my skills, but on the other hand to create something fun and useful (at least I hope so). 
                 The website doesn't contain any information, that can't be found on <StyledExternalLink url="https://myanimelist.net" text="MyAnimeList.net"/>, but the general idea was to provide functional search tool and only general information about anime (to make UI lighter) as well as links to external sources, where more information can be found.  
                 </Typography>
                 <Typography paragraph>

@@ -26,7 +26,7 @@ First you need to build the project:
 `npm run build`
 
 Then you will be able to run it using any simple web server. The most easiest example is to use [serve](https://www.npmjs.com/package/serve).
-First, install it globally on you machine:
+First, install it globally on your machine:
 
 `npm i serve -g`
 

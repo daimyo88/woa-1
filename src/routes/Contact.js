@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import PageTitle from '../components/PageTitle/PageTitle';
 import { Paper, Typography } from '@mui/material';
-import StyledExternalLink from '../components/StyledExternalLink/StyledExternalLink';
-import ContactForm from '../components/ContactForm/ContactForm';
+import PageTitle from '../components/text/PageTitle/PageTitle';
+import StyledExternalLink from '../components/text/StyledExternalLink/StyledExternalLink';
 import sendMessage from '../services/sendMessage';
-import SuccessMessage from '../components/SuccessMessage/SuccessMessage';
-import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import ContactForm from '../components/forms/ContactForm/ContactForm';
+import SuccessMessage from '../components/messages/SuccessMessage/SuccessMessage';
+import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 
 export default function Page() {
 

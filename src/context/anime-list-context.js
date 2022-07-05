@@ -54,6 +54,8 @@ const AnimeListContextProvider = ({ children }) => {
       sfw,
       errorHandler: setApiError
     }
+
+    
     const fetchAnime = async () => {
       try {
         setLoading(true);

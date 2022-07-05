@@ -19,24 +19,24 @@ import PageNotFound from './routes/PageNotFound';
 export default function App() {
 
   return (
-    <BrowserRouter>
-      <ThemeModeContextProvider>
-        <ThemeProvider>
-            <AnimeListContextProvider>
-                <Routes>
-                  <Route path="/" element={<Public />}>
-                    <Route index element={<Home />} />
-                    <Route path="search" element={<Search />} />
-                    <Route path="about" element={<About />} />
-                    <Route path="contact" element={<Contact />} />
-                    <Route path="anime/:id" element={<Anime />} />
-                    <Route path="*" element={<PageNotFound />} />
-                  </Route>
-                </Routes>
-            </AnimeListContextProvider>
-        </ThemeProvider>
-      </ThemeModeContextProvider>
-    </BrowserRouter>
+      <BrowserRouter>
+          <ThemeModeContextProvider>
+            <ThemeProvider>
+                <AnimeListContextProvider>
+                    <Routes>
+                        <Route path="/" element={<Public />}>
+                        <Route index element={<Home />} />
+                        <Route path="search" element={<Search />} />
+                        <Route path="about" element={<About />} />
+                        <Route path="contact" element={<Contact />} />
+                        <Route path="anime/:id" element={<Anime />} />
+                        <Route path="*" element={<PageNotFound />} />
+                      </Route>
+                    </Routes>
+                </AnimeListContextProvider>
+            </ThemeProvider>
+          </ThemeModeContextProvider>
+      </BrowserRouter>
   );
 }
 

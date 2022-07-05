@@ -3,9 +3,9 @@ import { Outlet } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import ScrollTopButton from '../components/ScrollTopButton/ScrollTopButton';
+import Header from '../components/headers/PageHeader/PageHeader';
+import Footer from '../components/footers/PageFooter/PageFooter';
+import ScrollTopButton from '../components/buttons/ScrollTopButton/ScrollTopButton';
 
 export default function Public() {
     return (
