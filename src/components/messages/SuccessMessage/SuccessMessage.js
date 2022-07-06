@@ -7,7 +7,7 @@ import successPicture from '../../../assets/img/hachikuji_smile.png';
 export default function SuccessMessage({text}) {
     return (
         <Grid container justifyContent="center">
-            <Grid item sx={{p: '50px 20px'}}>
+            <Grid item sx={{p: '20px'}}>
                 <img src={successPicture} alt="anime character smile" />
                 <Typography 
                     variant="h2" 

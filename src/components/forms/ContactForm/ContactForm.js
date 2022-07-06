@@ -68,7 +68,7 @@ export default function ContactForm(props) {
                             <CustomInput 
                                 name="message"
                                 type="text"
-                                label="Message"
+                                label="Message*"
                                 multiline={true}
                             />
                         </Grid>

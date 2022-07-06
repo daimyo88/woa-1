@@ -11,40 +11,43 @@ import { ThemeModeContext } from "../context/theme-mode-context";
 import StyledLink from '../components/text/StyledLink/StyledLink';
 import HighlightedTitle from '../components/text/HighlightedTitle/HighlightedTitle';
 import CtaLink from '../components/buttons/CtaLink/CtaLink';
+import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
 export default function Home(){
     const {themeMode} = useContext(ThemeModeContext);
     
     return (
-        <Box 
-            sx={{
-                maxWidth: '800px',
-                py: '50px',
-                m: '0 auto'
-            }}
-        >
-            <Grid 
-                container
+        <FullscreenContainer>
+            <Box 
+                sx={{
+                    maxWidth: '800px',
+                    py: '30px',
+                    m: '0 auto'
+                }}
             >
                 <Grid 
-                    item xs={12} 
-                    sx={{ textAlign: 'center'}}
+                    container
                 >
-                    { themeMode.mode === 'light' ? <img src={lightPicture} alt="anime character light theme" />
-                    : <img src={darkPicture} alt="anime character dark theme" /> }
+                    <Grid 
+                        item xs={12} 
+                        sx={{ textAlign: 'center'}}
+                    >
+                        { themeMode.mode === 'light' ? <img src={lightPicture} alt="anime character light theme" />
+                        : <img src={darkPicture} alt="anime character dark theme" /> }
+                    </Grid>
+                    <Grid item xs={12} sx={{ py: '25px' }}>
+                        <Paper elevation={0}  sx={{ py: '15px' }}>
+                            <Typography 
+                                align="center"
+                                variant="h1"
+                            >
+                                Welcome to the <HighlightedTitle text="World of Anime" />, <br />online anime library based on <StyledLink targetBlank={true} href="https://jikan.moe/" text="Jikan REST API" />
+                            </Typography>
+                        </Paper>
+                    </Grid>
+                    <CtaLink url='/search' icon={<SearchIcon />} text='ANIME SEARCH' />
                 </Grid>
-                <Grid item xs={12} sx={{ py: '25px' }}>
-                    <Paper elevation={0}  sx={{ py: '15px' }}>
-                        <Typography 
-                            align="center"
-                            variant="h1"
-                        >
-                            Welcome to the <HighlightedTitle text="World of Anime" />, <br />online anime library based on <StyledLink targetBlank={true} href="https://jikan.moe/" text="Jikan REST API" />
-                        </Typography>
-                    </Paper>
-                </Grid>
-                <CtaLink url='/search' icon={<SearchIcon />} text='ANIME SEARCH' />
-            </Grid>
-        </Box>
+            </Box>
+        </FullscreenContainer>
     )
 }

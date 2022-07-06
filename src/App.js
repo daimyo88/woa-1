@@ -10,11 +10,12 @@ import Public from './layouts/Public';
 import ThemeProvider from './theme/ThemeProvider';
 import { AnimeListContextProvider } from './context/anime-list-context';
 import Home from './routes/Home';
-import Search from './routes/Search';
-import About from './routes/About';
-import Contact from './routes/Contact';
-import Anime from './routes/Anime';
-import PageNotFound from './routes/PageNotFound';
+
+const Search = React.lazy(() => import('./routes/Search'));
+const About = React.lazy(() => import('./routes/About'));
+const Contact = React.lazy(() => import('./routes/Contact'));
+const Anime = React.lazy(() => import('./routes/Anime'));
+const PageNotFound = React.lazy(() => import('./routes/PageNotFound'));
 
 export default function App() {
 

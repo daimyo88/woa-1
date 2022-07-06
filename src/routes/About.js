@@ -4,11 +4,12 @@ import { Paper, Typography } from '@mui/material';
 import PageTitle from '../components/text/PageTitle/PageTitle';
 import StyledExternalLink from '../components/text/StyledExternalLink/StyledExternalLink';
 import CtaLink from '../components/buttons/CtaLink/CtaLink';
+import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
 export default function Page() {
 
     return (
-        <>
+        <FullscreenContainer>
             <PageTitle text="About" />
             <Paper sx={{mb: '15px', p: '15px 15px 20px'}}>
                 <Typography variant="h2" color="secondary">About the project</Typography>
@@ -26,6 +27,6 @@ export default function Page() {
                 </Typography>
                 <CtaLink url='/contact' icon={null} text='CONTACT ME' />
             </Paper>
-        </>
+        </FullscreenContainer>
     )
 }
