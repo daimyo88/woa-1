@@ -7,6 +7,12 @@ describe('CtaLink', () => {
   test('renders link text', () => {
     render(<BrowserRouter><CtaLink url="/contact" text="Contact" /></BrowserRouter>);
     expect(screen.getByText("Contact")).toBeInTheDocument();
-    screen.debug();
-  })
+  });
+
+  test('link has correct href', () => {
+    render(<BrowserRouter><CtaLink url="/contact" text="Contact" /></BrowserRouter>);
+    expect(screen.getByText("Contact")).toHaveAttribute("href", "/contact");
+  //  screen.debug();
+  });
+
 });
