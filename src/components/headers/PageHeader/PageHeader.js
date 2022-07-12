@@ -20,13 +20,13 @@ export default function PageHeader() {
               <Grid item sx={{minWidth: '85px'}}>
                 <Logo />
               </Grid>
-              <Grid item sx={{ display: { xs: 'flex', md: 'none' } }}> 
+              <Grid id="mobile-navigation" item sx={{ display: { xs: 'flex', md: 'none' } }}> 
                   <MenuNavigation />
               </Grid>
-              <Grid item sx={{ display: { xs: 'none', md: 'flex' } }}> 
+              <Grid id="desktop-navigation" item sx={{ display: { xs: 'none', md: 'flex' } }}> 
                   <Navigation />
               </Grid>
-              <Grid item>
+              <Grid item id="theme-switcher">
                 <ThemeModeSwitcher />
               </Grid>
             </Grid>
