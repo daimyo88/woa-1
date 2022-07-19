@@ -2,22 +2,12 @@ import React, { useContext } from 'react';
 import { Typography } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
+
+import { actions } from '../../../actions/searchActions';
 import { AnimeListContext } from '../../../context/anime-list-context';
 
 export default function FilterGenres() {
-    const { genres, selectedGenres, setSelectedGenres, setPage } = useContext(AnimeListContext);
-
-    const genreClickHandler = (id) => {
-        const currentGenres = [...selectedGenres];
-        const existingGenreIndex = currentGenres.indexOf(id);
-        if(existingGenreIndex !== -1) {
-            currentGenres.splice(existingGenreIndex, 1);
-        } else {
-            currentGenres.push(id);
-        }
-        setSelectedGenres(currentGenres);
-        setPage(1);
-    }
+    const { genres, searchOptions, dispatchSearch } = useContext(AnimeListContext);
 
     return (
         <>
@@ -30,14 +20,14 @@ export default function FilterGenres() {
             </Typography>
             <Grid container spacing={1}>
                 { genres?.map(({mal_id, name}) => {
-                    const variant = selectedGenres.includes(mal_id) ? "filled" : "outlined";
+                    const variant = searchOptions.selectedGenres.includes(mal_id) ? "filled" : "outlined";
                     return (
                         <Grid key={mal_id} item>
                             <Chip 
                                 color="primary" 
                                 label={name} 
                                 variant={variant}
-                                onClick={() => genreClickHandler(mal_id)}
+                                onClick={() => dispatchSearch({ type: actions.updateSelectedGenres, val: mal_id})}
                             />
                         </Grid>
                     )  

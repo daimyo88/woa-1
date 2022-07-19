@@ -1,16 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import Switch from '@mui/material/Switch';
 
-import { AnimeListContext } from '../../../context/anime-list-context';
-
 export default function FilterSwitch({ title, value, changeHandler}) {
-    const { setPage } = useContext(AnimeListContext);
-
     const handleChange = (e) => {
         changeHandler(e.target.checked);
-        setPage(1);
     };
 
     return (

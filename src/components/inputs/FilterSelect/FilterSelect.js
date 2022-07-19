@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
@@ -7,11 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import { AnimeListContext } from '../../../context/anime-list-context';
-
 export default function FilterSelect({ title, value, options, changeHandler}) {
     const theme = useTheme();
-    const { setPage } = useContext(AnimeListContext);
     return (
         <>
             <Typography 
@@ -34,7 +31,7 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
                 <Select
                     displayEmpty
                     value={value}
-                    onChange={(e) => { changeHandler(e.target.value);setPage(1) }}
+                    onChange={(e) => { changeHandler(e.target.value)}}
                     color="primary"
                     IconComponent={KeyboardArrowDownIcon}
                     sx={{fontSize: '14px'}}

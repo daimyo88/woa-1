@@ -3,15 +3,16 @@ import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
+import { actions } from '../../../actions/searchActions';
 import { AnimeListContext } from '../../../context/anime-list-context';
 
 const paginationSize = window.innerWidth > 768 ? "large" : "normal";
 
 export default function AnimePagination() {
-    const {page, setPage, pages} = useContext(AnimeListContext);
+    const {searchOptions, dispatchSearch, pages} = useContext(AnimeListContext);
 
     const handleChange = (event, value) => {
-      setPage(value);
+        dispatchSearch({ type: actions.updatePage, val: value });
     };
 
     const pagination = (pages > 1) ? (
@@ -23,7 +24,7 @@ export default function AnimePagination() {
                         size={paginationSize}
                         color="primary" 
                         count={pages} 
-                        page={page} 
+                        page={searchOptions.page} 
                         onChange={handleChange} 
                     />
                 </Stack>

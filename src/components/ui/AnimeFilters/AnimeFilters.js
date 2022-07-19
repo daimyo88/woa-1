@@ -10,26 +10,22 @@ import FilterSelect from '../../inputs/FilterSelect/FilterSelect';
 import FilterDate from '../../inputs/FilterDate/FilterDate';
 import FilterSwitch from '../../inputs/FilterSwitch/FilterSwitch';
 
+import { actions } from '../../../actions/searchActions';
 import { TYPE_OPTIONS  } from '../../../constants/contstants';
 import { RATING_OPTIONS } from '../../../constants/contstants';
 import { STATUS_OPTIONS } from '../../../constants/contstants';
 
 export default function AnimeFilters() {
-    const { 
-        type, 
-        setType, 
-        rating, 
-        setRating, 
-        status, 
-        setStatus, 
-        startDate, 
-        setStartDate, 
-        endDate, 
-        setEndDate,
-        sfw,
-        setSfw,
-        resetFilters
-    } = useContext(AnimeListContext);
+    const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const { type, rating, status, startDate, endDate, sfw } = searchOptions;
+
+    const setFilter = (filter, val) => {
+        dispatchSearch({
+            type: actions.updateFilter,
+            filter,
+            val
+        })
+    }
 
     return (
         <Paper sx={{ mb: '5px', p: '15px'}}>
@@ -42,7 +38,7 @@ export default function AnimeFilters() {
                         title="Type"
                         value={ type }
                         options={ TYPE_OPTIONS }
-                        changeHandler={ setType }
+                        changeHandler={ (val) => setFilter('type', val) }
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={3} sx={{mb: '10px'}}>
@@ -50,7 +46,7 @@ export default function AnimeFilters() {
                         title="Rating"
                         value={ rating }
                         options={ RATING_OPTIONS }
-                        changeHandler={ setRating }
+                        changeHandler={ (val) => setFilter('rating', val)  }
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={2} sx={{mb: '10px'}}>
@@ -58,28 +54,28 @@ export default function AnimeFilters() {
                         title="Status"
                         value={ status}
                         options={ STATUS_OPTIONS }
-                        changeHandler={ setStatus }
+                        changeHandler={ (val) => setFilter('status', val)  }
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={1} sx={{mb: '10px'}} >
                     <FilterSwitch 
                         title="SFW"
                         value={ sfw }
-                        changeHandler={ setSfw }
+                        changeHandler={ (val) => setFilter('sfw', val)  }
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={2} sx={{mb: '10px'}}>
                     <FilterDate 
                         title="Start year"
                         value={ startDate }
-                        changeHandler={ setStartDate }
+                        changeHandler={ (val) => setFilter('startDate', val)  }
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={2} sx={{mb: '10px'}}>
                     <FilterDate 
                         title="End year"
                         value={ endDate }
-                        changeHandler={ setEndDate }
+                        changeHandler={ (val) => setFilter('endDate', val)  }
                     />
                 </Grid>
                 <Grid item xs={12} >
@@ -88,7 +84,7 @@ export default function AnimeFilters() {
                             <Button
                                 variant="contained" 
                                 color="primary"
-                                onClick={ resetFilters }
+                                onClick={ () => dispatchSearch({type: actions.resetFilters }) }
                                 endIcon={<ClearIcon />}
                             >
                                 Clear filters

@@ -10,6 +10,7 @@ import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
+import { actions } from '../../../actions/searchActions';
 import { AnimeListContext } from '../../../context/anime-list-context';
 
 const StyledTextField = styled(TextField)(({theme}) => ({
@@ -30,21 +31,20 @@ const StyledTextField = styled(TextField)(({theme}) => ({
   }));
 
 export default function SearchInput() {
-    const { searchQuery, setSearchQuery, setPage } = useContext(AnimeListContext);
+    const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
     const theme = useTheme();
     const [inputValue, setInputValue] = useState('');
 
     const keyPressHandler = (e) => {
         if(e.keyCode === 13) {
             e.preventDefault();
-            setSearchQuery(inputValue);
-            setPage(1);
+            dispatchSearch({ type: actions.updateSearchQuery, val: inputValue })
         }
     } 
 
     useEffect(() => {
-        setInputValue(searchQuery);
-    },[searchQuery])
+        setInputValue(searchOptions.searchQuery);
+    },[searchOptions.searchQuery])
 
     return (
         <Grid container wrap="nowrap" justifyContent="center">
@@ -65,7 +65,7 @@ export default function SearchInput() {
                                 <InputAdornment position="start">
                                     <IconButton
                                         edge="start"
-                                        onClick={() => {setInputValue(''); setSearchQuery('');setPage(1)}}
+                                        onClick={() => {setInputValue(''); dispatchSearch({ type: actions.updateSearchQuery, val: ''});}}
                                     >
                                         <ClearIcon sx={{color: 'primary.main'}}/>
                                     </IconButton>
@@ -82,7 +82,7 @@ export default function SearchInput() {
                     size="large"
                     sx={{ml: '10px'}}
                     endIcon={<SearchIcon />}
-                    onClick={() => { setSearchQuery(inputValue);setPage(1) }}
+                    onClick={() => { dispatchSearch({ type: actions.updateSearchQuery, val: inputValue}) }}
                 >
                     Search
                 </Button>     

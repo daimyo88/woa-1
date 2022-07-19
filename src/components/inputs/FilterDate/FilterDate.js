@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -9,20 +9,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 
-import { AnimeListContext } from '../../../context/anime-list-context';
 import { parseISO } from 'date-fns';
 
 export default function FilterSelect({ title, value, changeHandler}) {
-    const { setPage } = useContext(AnimeListContext);
 
     const handleChange = (newValue) => {
         changeHandler(newValue);
-        setPage(1);
     };
 
     const resetDate = () => {
         changeHandler(null);
-        setPage(1);  
     }
 
     return (

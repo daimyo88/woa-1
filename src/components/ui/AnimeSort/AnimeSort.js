@@ -10,16 +10,16 @@ import { useTheme } from '@emotion/react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import AnimeListContainer from '../../containers/AnimeListContainer/AnimeListContainer';
+import { actions } from '../../../actions/searchActions';
 import { AnimeListContext } from '../../../context/anime-list-context';
 import { SORT_OPTIONS } from '../../../constants/contstants';
 
 export default function AnimeSort() {
     const theme = useTheme();
-    const { count, sort, setSort, setPage } = useContext(AnimeListContext);
+    const { count, searchOptions, dispatchSearch } = useContext(AnimeListContext);
 
     const handleChange = (event) => {
-        setSort(event.target.value);
-        setPage(1);
+        dispatchSearch({ type: actions.updateSort, val: event.target.value});
     };
 
     return (
@@ -69,7 +69,7 @@ export default function AnimeSort() {
                             <Select
                                 id="sort"
                                 label="Sort by"
-                                value={sort}
+                                value={searchOptions.sort}
                                 onChange={handleChange}
                                 color="primary"
                                 IconComponent={KeyboardArrowDownIcon}
