@@ -5,7 +5,6 @@ import store from "./store";
 
 import Public from "./layouts/Public";
 import ThemeProvider from "./theme/ThemeProvider";
-import { AnimeListContextProvider } from "./context/anime-list-context";
 import Home from "./routes/Home";
 
 const Search = React.lazy(() => import("./routes/Search"));
@@ -19,18 +18,16 @@ export default function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <ThemeProvider>
-                    <AnimeListContextProvider>
-                        <Routes>
-                            <Route path="/" element={<Public />}>
-                                <Route index element={<Home />} />
-                                <Route path="search" element={<Search />} />
-                                <Route path="about" element={<About />} />
-                                <Route path="contact" element={<Contact />} />
-                                <Route path="anime/:id" element={<Anime />} />
-                                <Route path="*" element={<PageNotFound />} />
-                            </Route>
-                        </Routes>
-                    </AnimeListContextProvider>
+                    <Routes>
+                        <Route path="/" element={<Public />}>
+                            <Route index element={<Home />} />
+                            <Route path="search" element={<Search />} />
+                            <Route path="about" element={<About />} />
+                            <Route path="contact" element={<Contact />} />
+                            <Route path="anime/:id" element={<Anime />} />
+                            <Route path="*" element={<PageNotFound />} />
+                        </Route>
+                    </Routes>
                 </ThemeProvider>
             </BrowserRouter>
         </Provider>

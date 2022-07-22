@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -10,16 +11,17 @@ import { useTheme } from '@emotion/react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import AnimeListContainer from '../../containers/AnimeListContainer/AnimeListContainer';
-import { actions } from '../../../actions/searchActions';
-import { AnimeListContext } from '../../../context/anime-list-context';
+import { searchOptionsSliceActions } from '../../../store/search-options-slice';
+
 import { SORT_OPTIONS } from '../../../constants/contstants';
 
-export default function AnimeSort() {
+export default function AnimeSort({count}) {
     const theme = useTheme();
-    const { count, searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const searchOptions = useSelector(state => state.searchOptions);
+    const dispatch = useDispatch();
 
     const handleChange = (event) => {
-        dispatchSearch({ type: actions.updateSort, val: event.target.value});
+        dispatch(searchOptionsSliceActions.updateSort(event.target.value));
     };
 
     return (

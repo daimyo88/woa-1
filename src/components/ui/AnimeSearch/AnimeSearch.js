@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -7,7 +8,8 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import styled from '@emotion/styled';
 
-import { AnimeListContext } from '../../../context/anime-list-context';
+import { uiActions } from '../../../store/ui-slice';
+import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 import SearchInput from '../../inputs/SearchInput/SearchInput';
 import AnimeFilters from '../../ui/AnimeFilters/AnimeFilters';
 
@@ -41,7 +43,16 @@ const AccordionSummary = styled((props) => (
   }));
 
   export default function AnimeSearch() {
-    const {advancedSearch, setAdvancedSearch } = useContext(AnimeListContext);
+    const ui = useSelector(state => state.ui);
+    const dispatch = useDispatch();
+
+    const { advancedSearch } = ui;
+
+    useEffect(() => {
+      if(!advancedSearch) {
+        dispatch(searchOptionsSliceActions.resetFilters());
+      }
+    },[dispatch, advancedSearch])
 
     return (
       <>
@@ -64,7 +75,7 @@ const AccordionSummary = styled((props) => (
                         size="large"
                         sx={{pr: '15px'}}
                         endIcon={<ChevronRightIcon sx={{ml:'7px'}}/>}
-                        onClick={() => setAdvancedSearch(!advancedSearch)}
+                        onClick={() => dispatch(uiActions.toggleAdvancedSearch())}
                     >
                         Advanced
                     </Button>

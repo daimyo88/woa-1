@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-import { actions } from '../../../actions/searchActions';
-import { AnimeListContext } from '../../../context/anime-list-context';
+import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 
 const paginationSize = window.innerWidth > 768 ? "large" : "normal";
 
-export default function AnimePagination() {
-    const {searchOptions, dispatchSearch, pages} = useContext(AnimeListContext);
+export default function AnimePagination({pages}) {
+    const searchOptions = useSelector(state => state.searchOptions);
+    const dispatch = useDispatch();
 
     const handleChange = (event, value) => {
-        dispatchSearch({ type: actions.updatePage, val: value });
+        dispatch(searchOptionsSliceActions.updateCurrentPage(value));
     };
 
     const pagination = (pages > 1) ? (

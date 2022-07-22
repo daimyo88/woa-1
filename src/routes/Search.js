@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 import PageTitle from '../components/text/PageTitle/PageTitle';
 import AnimeSearch from '../components/ui/AnimeSearch/AnimeSearch';
 import AnimeList from '../components/structural/AnimeList/AnimeList';
@@ -8,20 +9,31 @@ import AnimeListLoader from '../components/loaders/AnimeListLoader/AnimeListLoad
 import NothingFoundMessage from '../components/messages/NothingFoundMessage/NothingFoundMessage';
 import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 
-import { AnimeListContext } from '../context/anime-list-context';
+import { useGetAnimeListQuery } from '../services/anime';
+import { formatStartDate, formatEndDate, formatSfwFilter } from '../utils';
 
 export default function SearchPage() {
-    const { apiError, loading, animeList } = useContext(AnimeListContext);
+    const searchOptions = useSelector(state => state.searchOptions);
+
+    const { data, isLoading, error } = useGetAnimeListQuery({
+        ...searchOptions,
+        startDateFilter: formatStartDate(searchOptions.startDate),
+        endDateFilter: formatEndDate(searchOptions.endDate),
+        sfwFilter: formatSfwFilter(searchOptions.sfw)
+    });
+
+    const animeList = data?.data;
+
     return (
         <>
             <PageTitle text="Anime search" />
             <AnimeSearch />
-            <AnimeSort />
-            { loading && <AnimeListLoader/> }
-            { !loading && !apiError && !!animeList?.length && <AnimeList /> }
-            { !loading && !apiError && !animeList?.length && <NothingFoundMessage />}
-            { !loading && apiError && <ErrorMessage text="API error :(" />}
-            <AnimePagination />
+            <AnimeSort count = { data?.pagination?.items?.total } />
+            { isLoading && <AnimeListLoader/> }
+            { !isLoading && !error && !!animeList?.length && <AnimeList animeList = { animeList || [] } /> }
+            { !isLoading && !error && !animeList?.length && <NothingFoundMessage />}
+            { !isLoading && error && <ErrorMessage text="API error :(" />}
+            <AnimePagination pages={ data?.pagination?.last_visible_page || 0 } />
         </>
     )
 }

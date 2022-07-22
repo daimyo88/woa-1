@@ -14,7 +14,7 @@ import { parseISO } from 'date-fns';
 export default function FilterSelect({ title, value, changeHandler}) {
 
     const handleChange = (newValue) => {
-        changeHandler(newValue);
+        changeHandler(newValue.toString());
     };
 
     const resetDate = () => {
@@ -61,6 +61,6 @@ export default function FilterSelect({ title, value, changeHandler}) {
 
 FilterSelect.propTypes = {
     title: PropTypes.string.isRequired,
-    value: PropTypes.instanceOf(Date),
+    value: PropTypes.string,
     changeHandler: PropTypes.func,
 }

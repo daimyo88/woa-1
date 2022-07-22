@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -11,8 +11,7 @@ import styled from '@emotion/styled';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import { actions } from '../../../actions/searchActions';
-import { AnimeListContext } from '../../../context/anime-list-context';
+import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 
 const StyledTextField = styled(TextField)(({theme}) => ({
     "& .MuiOutlinedInput-root": {
@@ -32,16 +31,15 @@ const StyledTextField = styled(TextField)(({theme}) => ({
   }));
 
 export default function SearchInput() {
-    const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
-    const search = useSelector(state => state.searchOptions);
-    console.log(search.searchQuery);
+    const searchOptions = useSelector(state => state.searchOptions);
+    const dispatch = useDispatch();
     const theme = useTheme();
     const [inputValue, setInputValue] = useState('');
 
     const keyPressHandler = (e) => {
         if(e.keyCode === 13) {
             e.preventDefault();
-            dispatchSearch({ type: actions.updateSearchQuery, val: inputValue })
+            dispatch(searchOptionsSliceActions.updateSearchQuery(inputValue));
         }
     } 
 
@@ -68,7 +66,7 @@ export default function SearchInput() {
                                 <InputAdornment position="start">
                                     <IconButton
                                         edge="start"
-                                        onClick={() => {setInputValue(''); dispatchSearch({ type: actions.updateSearchQuery, val: ''});}}
+                                        onClick={() => {setInputValue(''); dispatch(searchOptionsSliceActions.updateSearchQuery(''));}}
                                     >
                                         <ClearIcon sx={{color: 'primary.main'}}/>
                                     </IconButton>
@@ -85,7 +83,7 @@ export default function SearchInput() {
                     size="large"
                     sx={{ml: '10px'}}
                     endIcon={<SearchIcon />}
-                    onClick={() => { dispatchSearch({ type: actions.updateSearchQuery, val: inputValue}) }}
+                    onClick={() => { dispatch(searchOptionsSliceActions.updateSearchQuery(inputValue)) }}
                 >
                     Search
                 </Button>     

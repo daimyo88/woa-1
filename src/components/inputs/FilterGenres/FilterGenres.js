@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Typography } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 
-import { actions } from '../../../actions/searchActions';
-import { AnimeListContext } from '../../../context/anime-list-context';
+import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 import { useGetGenresQuery } from '../../../services/genres';
 
 export default function FilterGenres() {
-    const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const searchOptions = useSelector(state => state.searchOptions);
+    const dispatch = useDispatch();
     const { data } = useGetGenresQuery();
 
     return (
@@ -22,14 +23,14 @@ export default function FilterGenres() {
             </Typography>
             <Grid container spacing={1}>
                 { data?.data.map(({mal_id, name}) => {
-                    const variant = searchOptions.selectedGenres.includes(mal_id) ? "filled" : "outlined";
+                    const variant = searchOptions.genres.includes(mal_id) ? "filled" : "outlined";
                     return (
                         <Grid key={mal_id} item>
                             <Chip 
                                 color="primary" 
                                 label={name} 
                                 variant={variant}
-                                onClick={() => dispatchSearch({ type: actions.updateSelectedGenres, val: mal_id})}
+                                onClick={() => dispatch(searchOptionsSliceActions.updateSelectedGenres(mal_id))}
                             />
                         </Grid>
                     )  

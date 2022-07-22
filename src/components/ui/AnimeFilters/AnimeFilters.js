@@ -1,30 +1,27 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ClearIcon from "@mui/icons-material/Clear";
 
-import { AnimeListContext } from "../../../context/anime-list-context";
 import FilterGenres from "../../inputs/FilterGenres/FilterGenres";
 import FilterSelect from "../../inputs/FilterSelect/FilterSelect";
 import FilterDate from "../../inputs/FilterDate/FilterDate";
 import FilterSwitch from "../../inputs/FilterSwitch/FilterSwitch";
 
-import { actions } from "../../../actions/searchActions";
+import { searchOptionsSliceActions } from "../../../store/search-options-slice";
 import { TYPE_OPTIONS } from "../../../constants/contstants";
 import { RATING_OPTIONS } from "../../../constants/contstants";
 import { STATUS_OPTIONS } from "../../../constants/contstants";
 
 export default function AnimeFilters() {
-    const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const searchOptions = useSelector(state => state.searchOptions);
+    const dispatch = useDispatch();
     const { type, rating, status, startDate, endDate, sfw } = searchOptions;
 
-    const setFilter = (filter, val) => {
-        dispatchSearch({
-            type: actions.updateFilter,
-            filter,
-            val,
-        });
+    const setFilter = (filter, value) => {
+        dispatch(searchOptionsSliceActions.updateFilter({ filter, value }))
     };
 
     return (
@@ -85,9 +82,7 @@ export default function AnimeFilters() {
                                 variant="contained"
                                 color="primary"
                                 onClick={() =>
-                                    dispatchSearch({
-                                        type: actions.resetFilters,
-                                    })
+                                    dispatch(searchOptionsSliceActions.resetFilters())
                                 }
                                 endIcon={<ClearIcon />}
                             >

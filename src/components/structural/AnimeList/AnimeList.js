@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
-
+import React from 'react';
 import AnimeListContainer from '../../containers/AnimeListContainer/AnimeListContainer';
 import AnimeItem from '../../structural/AnimeItem/AnimeItem';
-import { AnimeListContext } from '../../../context/anime-list-context';
 
-export default function AnimeList() {
-    const { animeList } = useContext(AnimeListContext);
+export default function AnimeList({animeList}) {
 
     return (
         <AnimeListContainer>
