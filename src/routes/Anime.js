@@ -5,7 +5,6 @@ import { Paper } from '@mui/material';
 
 import { ANIME_SINGLE_TABS } from '../constants/contstants';
 
-import getAnime from '../services/getAnime';
 import AnimeTabs from '../components/navigations/AnimeTabs/AnimeTabs';
 import GoBackButtons from '../components/buttons/GoBackButtons/GoBackButtons';
 import PageTitle from '../components/text/PageTitle/PageTitle';
@@ -16,41 +15,44 @@ import ExternalLinksInfo from '../components/dataDisplay/ExternalLinksInfo/Exter
 import AnimeInfoLoader from '../components/loaders/AnimeInfoLoader/AnimeInfoLoader';
 import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 
+import { useGetAnimeQuery } from '../services/anime';
+
 export default function Anime() {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    const [anime, setAnime] = useState(null);
     const [tab, setTab] = useState(0);
     let params = useParams();
+
+    const { data, isLoading, error } = useGetAnimeQuery(params.id);
+
+    const anime = data?.data;
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
     },[]);
 
-    useEffect(() => {
-        const fetchAnime = async () => {
-            // JIKAN API allows only 3 requests per second. React renders twice in development mode 
-            // so it causes API errors
-            setTimeout(async () => {
-                    try {
-                        const animeData = await getAnime(params.id, setError);
-                        setAnime(animeData?.data?.data);
-                        setTab(0);
-                    } finally {
-                        setLoading(false);
-                    }
-                }, process.env.REACT_APP_API_DELAY)
-        }
+    // useEffect(() => {
+    //     const fetchAnime = async () => {
+    //         // JIKAN API allows only 3 requests per second. React renders twice in development mode 
+    //         // so it causes API errors
+    //         setTimeout(async () => {
+    //                 try {
+    //                     const animeData = await getAnime(params.id, setError);
+    //                     setAnime(animeData?.data?.data);
+    //                     setTab(0);
+    //                 } finally {
+    //                     setLoading(false);
+    //                 }
+    //             }, process.env.REACT_APP_API_DELAY)
+    //     }
 
-        fetchAnime();
-    }, [params]);
+    //     fetchAnime();
+    // }, [params]);
 
     return (
         <>
             <GoBackButtons />
-            { !loading && error && <ErrorMessage text="API error :(" />}
-            { loading && !error && <AnimeInfoLoader />}
-            { !loading && !error && anime && <>
+            { !isLoading && error && <ErrorMessage text="API error :(" />}
+            { isLoading && !error && <AnimeInfoLoader />}
+            { !isLoading && !error && anime && <>
                 <PageTitle text={anime.title} />
                 <Grid container sx={{my: '20px'}}>
                     <Grid item sm={4} xs={12} sx={{textAlign: 'center'}}>

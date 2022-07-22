@@ -5,9 +5,11 @@ import Grid from '@mui/material/Grid';
 
 import { actions } from '../../../actions/searchActions';
 import { AnimeListContext } from '../../../context/anime-list-context';
+import { useGetGenresQuery } from '../../../services/genres';
 
 export default function FilterGenres() {
-    const { genres, searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const { data } = useGetGenresQuery();
 
     return (
         <>
@@ -19,7 +21,7 @@ export default function FilterGenres() {
                 Genres
             </Typography>
             <Grid container spacing={1}>
-                { genres?.map(({mal_id, name}) => {
+                { data?.data.map(({mal_id, name}) => {
                     const variant = searchOptions.selectedGenres.includes(mal_id) ? "filled" : "outlined";
                     return (
                         <Grid key={mal_id} item>

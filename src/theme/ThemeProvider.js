@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React  from 'react';
+import { useSelector } from 'react-redux/es/exports';
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from "@mui/material/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeModeContext } from "../context/theme-mode-context";
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
 
 const breakpoints = createBreakpoints({});
 
 export default function Theme({children}) {
-    const {themeMode} = useContext(ThemeModeContext);
+    const themeMode = useSelector(state => state.themeMode);
 
     const theme = createTheme({
         components: {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -32,6 +33,8 @@ const StyledTextField = styled(TextField)(({theme}) => ({
 
 export default function SearchInput() {
     const { searchOptions, dispatchSearch } = useContext(AnimeListContext);
+    const search = useSelector(state => state.searchOptions);
+    console.log(search.searchQuery);
     const theme = useTheme();
     const [inputValue, setInputValue] = useState('');
 

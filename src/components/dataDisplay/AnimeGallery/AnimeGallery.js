@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import getAnimePictures from '../../../services/getAnimePictures';
+import React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import PropTypes from 'prop-types';
@@ -8,32 +7,21 @@ import AnimeGalleryLoader from '../../loaders/AnimeGalleryLoader/AnimeGalleryLoa
 import NothingFoundMessage from '../../messages/NothingFoundMessage/NothingFoundMessage';
 import ErrorMessage from '../../messages/ErrorMessage/ErrorMessage';
 
+import { useGetAnimePicturesQuery } from '../../../services/anime';
+
 const cols = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
 
 export default function AnimeGallery({id}) {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    const [pictures, setPictures] = useState([]);
 
-    useEffect(() => {
-        const getPictures = async () => {
-            try {
-                const response = await getAnimePictures(id, setError);
-                setPictures(response?.data?.data);
-            } finally {
-                setLoading(false);
-            }
-
-        }
-        getPictures();
-    },[id]);
+    const { data, isLoading, error } = useGetAnimePicturesQuery(id);
+    const pictures = data?.data;
 
     return (
         <>
-            { loading && !error && <AnimeGalleryLoader />}
-            { !loading && !error && !pictures.length && <NothingFoundMessage />}
-            { !loading && error && <ErrorMessage text="API error :(" />}
-            { !loading && !error &&  !!pictures.length && <ImageList variant="woven" cols={cols} gap={8}>
+            { isLoading && !error && <AnimeGalleryLoader />}
+            { !isLoading && !error && !pictures.length && <NothingFoundMessage />}
+            { !isLoading && error && <ErrorMessage text="API error :(" />}
+            { !isLoading && !error &&  !!pictures.length && <ImageList variant="woven" cols={cols} gap={8}>
                     { pictures?.map((picture, i) => (
                         <ImageListItem key={i}>
                             <img src={ picture?.jpg?.large_image_url } alt={`gallery ${i}`} />

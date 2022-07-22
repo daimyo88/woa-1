@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux/es/exports';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -7,14 +8,13 @@ import { Box } from '@mui/material';
 
 import lightPicture from '../assets/img/hanekawa_double_reverse.png';
 import darkPicture from '../assets/img/hanekawa_double.png';
-import { ThemeModeContext } from "../context/theme-mode-context";
 import StyledLink from '../components/text/StyledLink/StyledLink';
 import HighlightedTitle from '../components/text/HighlightedTitle/HighlightedTitle';
 import CtaLink from '../components/buttons/CtaLink/CtaLink';
 import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
 export default function Home(){
-    const {themeMode} = useContext(ThemeModeContext);
+    const themeMode = useSelector(state => state.themeMode);
     
     return (
         <FullscreenContainer>
