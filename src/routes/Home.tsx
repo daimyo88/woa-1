@@ -1,11 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux/es/exports';
+import React, { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/material';
 
+import { useAppSelector } from '../hooks/redux';
 import lightPicture from '../assets/img/hanekawa_double_reverse.png';
 import darkPicture from '../assets/img/hanekawa_double.png';
 import StyledLink from '../components/text/StyledLink/StyledLink';
@@ -13,8 +13,8 @@ import HighlightedTitle from '../components/text/HighlightedTitle/HighlightedTit
 import CtaLink from '../components/buttons/CtaLink/CtaLink';
 import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
-export default function Home(){
-    const themeMode = useSelector(state => state.themeMode);
+const Home: FC = () => {
+    const themeMode = useAppSelector(state => state.themeMode);
     
     return (
         <FullscreenContainer>
@@ -51,3 +51,5 @@ export default function Home(){
         </FullscreenContainer>
     )
 }
+
+export default Home;

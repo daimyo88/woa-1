@@ -1,6 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface SearchOptions {
+    searchQuery: string;
+    page: number;
+    sort: string;
+    genres: string[];
+    type: string;
+    rating: string;
+    status: string;
+    startDate: Date | null;
+    endDate: Date | null;
+    sfw: boolean;
+}
+
+const initialState: SearchOptions = {
     searchQuery: "",
     page: 1,
     sort: "&sort=desc&order_by=score",
@@ -25,10 +38,33 @@ const searchOptionsSlice = createSlice({
             state.sort = action.payload;
             state.page = 1;
         },
-        updateFilter(state, action) {
+        updateFilter(
+            state,
+            action: PayloadAction<{
+                filter: "type" | "rating" | "status";
+                value: string
+            }>
+        ) {
             const { filter, value } = action.payload;
             state[filter] = value;
             state.page = 1;
+        },
+        updateDateFilter(
+            state,
+            action: PayloadAction<{
+                filter: "startDate" | "endDate";
+                value: Date | null;
+            }>
+        ) {
+            const { filter, value } = action.payload;
+            state[filter] = value;
+            state.page = 1;
+        },
+        updateSfwFilter(
+            state,
+            action: PayloadAction<boolean>
+        ) {
+            state.sfw = action.payload;
         },
         resetFilters(state) {
             state.page = initialState.page;
@@ -40,10 +76,10 @@ const searchOptionsSlice = createSlice({
             state.endDate = initialState.endDate;
             state.sfw = initialState.sfw;
         },
-        updateCurrentPage(state, action) {
+        updateCurrentPage(state, action: PayloadAction<number>) {
             state.page = action.payload;
         },
-        updateSelectedGenres(state, action) {
+        updateSelectedGenres(state, action: PayloadAction<string>) {
             const currentGenres = [...state.genres];
             const genreId = action.payload;
             const existingGenreIndex = currentGenres.indexOf(genreId);
@@ -54,7 +90,7 @@ const searchOptionsSlice = createSlice({
             }
             state.genres = currentGenres;
             state.page = 1;
-        }
+        },
     },
 });
 

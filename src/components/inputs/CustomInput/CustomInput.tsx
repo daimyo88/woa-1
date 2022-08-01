@@ -1,10 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { useField } from 'formik';
 
 import TextField from '@mui/material/TextField';
 
-export default function CustomInput(props) {
+interface InputProps {
+    type: string,
+    name: string,
+    isrequired?: string,
+    label?: string,
+    multiline?: boolean
+}
+
+const CustomInput: FC<InputProps> = (props: InputProps) => {
+
     const [field, meta] = useField(props);
     const inputProps = {
         label: props.label,
@@ -28,11 +36,4 @@ export default function CustomInput(props) {
     )
 }
 
-CustomInput.propTypes = {
-    field: PropTypes.object,
-    meta: PropTypes.object,
-    label: PropTypes.string,
-    type: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    multiline: PropTypes.bool
-}
+export default CustomInput;

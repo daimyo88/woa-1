@@ -1,22 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Formik } from 'formik';
+import React, { FC } from 'react';
+import { Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import Grid from '@mui/material/Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 
 import CustomInput from '../../inputs/CustomInput/CustomInput';
+import ContactData from '../../../models/contactData';
 
-export default function ContactForm(props) {
+const initialValues: ContactData = {
+    name: '',
+    lastName: '',
+    email: '',
+    message: '' 
+}
+
+const ContactForm: FC<{ submitHandler: (values: ContactData, formik?: FormikHelpers<ContactData>) => void, loading: boolean }> = (props) => {
     return (
         <Formik
-            initialValues = {{
-                name: '',
-                lastName: '',
-                email: '',
-                message: ''
-            }}
+            initialValues= { initialValues }
             validateOnChange={false}
             validateOnBlur={false}
             enableReinitialize={true}
@@ -46,7 +48,7 @@ export default function ContactForm(props) {
                         <Grid sx={{opacity: 0}} item xs={12}>
                             <CustomInput 
                                 name="lastName"
-                                type="hidden"
+                                type="text"
                             />
                         </Grid>
                         <Grid item xs={12} sx={{mb: '20px'}}>
@@ -95,6 +97,4 @@ export default function ContactForm(props) {
     )
 }
 
-ContactForm.propTypes = {
-    submitHandler: PropTypes.func.isRequired,
-}
+export default ContactForm;

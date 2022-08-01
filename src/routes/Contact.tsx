@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Paper, Typography } from '@mui/material';
 import PageTitle from '../components/text/PageTitle/PageTitle';
 import StyledExternalLink from '../components/text/StyledExternalLink/StyledExternalLink';
@@ -8,13 +8,15 @@ import SuccessMessage from '../components/messages/SuccessMessage/SuccessMessage
 import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
-export default function Page() {
+import ContactData from '../models/contactData';
+
+const Page: FC = () => {
 
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-    const sendEmail = async (values, formik) => {
+    const sendEmail = async (values: ContactData, formik: any) => {
         try {
             setLoading(true);
             const response = await sendMessage(values, setError);
@@ -46,3 +48,5 @@ export default function Page() {
         </FullscreenContainer>
     )
 }
+
+export default Page;

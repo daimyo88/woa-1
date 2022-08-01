@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Paper, Typography } from '@mui/material';
 
 import PageTitle from '../components/text/PageTitle/PageTitle';
@@ -6,8 +6,7 @@ import StyledExternalLink from '../components/text/StyledExternalLink/StyledExte
 import CtaLink from '../components/buttons/CtaLink/CtaLink';
 import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
-export default function Page() {
-
+const Page: FC = () => {
     return (
         <FullscreenContainer>
             <PageTitle text="About" />
@@ -30,3 +29,5 @@ export default function Page() {
         </FullscreenContainer>
     )
 }
+
+export default Page;

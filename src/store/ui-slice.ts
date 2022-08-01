@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface UiState {
+    advancedSearch: boolean
+}
+
+const initialState: UiState = {
     advancedSearch: false
 }
 
