@@ -1,18 +1,22 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 
-const paginationSize = window.innerWidth > 768 ? "large" : "normal";
+const paginationSize = window.innerWidth > 768 ? "large" : "medium";
 
-export default function AnimePagination({pages}) {
-    const searchOptions = useSelector(state => state.searchOptions);
-    const dispatch = useDispatch();
+interface PaginationProps {
+    pages: number
+}
 
-    const handleChange = (event, value) => {
+const AnimePagination: FC<PaginationProps> = ({pages}) => {
+    const searchOptions = useAppSelector(state => state.searchOptions);
+    const dispatch = useAppDispatch();
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         dispatch(searchOptionsSliceActions.updateCurrentPage(value));
     };
 
@@ -35,3 +39,5 @@ export default function AnimePagination({pages}) {
     return pagination;
 
 }
+
+export default AnimePagination;

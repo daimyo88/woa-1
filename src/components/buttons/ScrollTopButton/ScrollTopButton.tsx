@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-export default function ScrollTopButton() {
+const ScrollTopButton: FC = () => {
     const [visible, setVisible] = useState(false)
   
     const toggleVisible = () => {
@@ -15,12 +15,10 @@ export default function ScrollTopButton() {
       }
     };
     
-    const scrollToTop = () =>{
+    const scrollToTop = () => {
       window.scrollTo({
         top: 0, 
         behavior: 'smooth'
-        /* you can also use 'auto' behaviour
-           in place of 'smooth' */
       });
     };
 
@@ -48,3 +46,5 @@ export default function ScrollTopButton() {
         </IconButton>
     )
 }
+
+export default ScrollTopButton;

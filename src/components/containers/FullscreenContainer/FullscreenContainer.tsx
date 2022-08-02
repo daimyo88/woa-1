@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 
-export default function FullscreenContainer({children}) {
+const FullscreenContainer: FC = ({children}) => {
     return (
         <Grid 
             container 
@@ -26,9 +25,4 @@ export default function FullscreenContainer({children}) {
     )
 }
 
-FullscreenContainer.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.array,
-      ]),
-}
+export default FullscreenContainer;

@@ -12,7 +12,7 @@ const uiSlice = createSlice({
     name: 'ui',
     initialState,
     reducers: {
-        toggleAdvancedSearch(state) {
+        toggleAdvancedSearch(state: UiState) {
             state.advancedSearch = !state.advancedSearch;
         }
     }

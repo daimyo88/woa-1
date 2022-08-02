@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
@@ -17,7 +17,7 @@ import ErrorMessage from "../components/messages/ErrorMessage/ErrorMessage";
 
 import { useGetAnimeQuery } from "../services/anime";
 
-export default function Anime() {
+const Anime: FC = () => {
     const [tab, setTab] = useState(0);
     let params = useParams();
 
@@ -28,7 +28,7 @@ export default function Anime() {
     useEffect(() => {
         window.scrollTo({ top: 0 });
         return () => {
-            return false;
+            return;
         };
     }, []);
 
@@ -36,7 +36,7 @@ export default function Anime() {
         setTab(0);
         window.scrollTo({ top: 0 });
         return () => {
-            return false;
+            return;
         };
     }, [params.id]);
 
@@ -107,3 +107,5 @@ export default function Anime() {
         </>
     );
 }
+
+export default Anime;

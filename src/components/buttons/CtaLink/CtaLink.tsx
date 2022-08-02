@@ -1,10 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 
-export default function CtaLink({url, text, icon}) {
+interface CtaLinkProps {
+    url: string,
+    text: string,
+    icon: React.ReactElement | null
+}
+
+const CtaLink: FC<CtaLinkProps> = ({url, text, icon}) => {
     return (
         <Grid container justifyContent="center">
             <Grid item>
@@ -23,8 +28,4 @@ export default function CtaLink({url, text, icon}) {
     )
 }
 
-CtaLink.propTypes = {
-    url: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    icon: PropTypes.element,
-}
+export default CtaLink;

@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@emotion/react';
+import React, { FC } from 'react';
+//import { useTheme, Theme } from '@emotion/react';
+import { useTheme, Theme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-export default function AdditionalInfo({label, text, color = 'primary'}) {
-    const theme = useTheme();
+interface AdditionalInfoProps {
+    label: string,
+    text: string,
+    color?: string
+}
+
+const AdditionalInfo: FC<AdditionalInfoProps> = ({label, text, color = 'primary'}) => {
+    const theme: Theme = useTheme();
     const textColor = color === 'primary' ? theme.palette.primary.light : theme.palette.secondary.light;
     return (
         <Typography paragraph sx={{mb:'2px'}} color="text.primary">
@@ -13,8 +19,4 @@ export default function AdditionalInfo({label, text, color = 'primary'}) {
     )
 }
 
-AdditionalInfo.propTypes = {
-    label: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    color: PropTypes.string,
-}
+export default AdditionalInfo;

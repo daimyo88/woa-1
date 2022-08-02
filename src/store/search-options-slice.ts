@@ -30,16 +30,16 @@ const searchOptionsSlice = createSlice({
     name: "searchOptions",
     initialState,
     reducers: {
-        updateSearchQuery(state, action) {
+        updateSearchQuery(state: SearchOptions, action: PayloadAction<string>) {
             state.searchQuery = action.payload;
             state.page = 1;
         },
-        updateSort(state, action) {
+        updateSort(state: SearchOptions, action: PayloadAction<string>) {
             state.sort = action.payload;
             state.page = 1;
         },
         updateFilter(
-            state,
+            state: SearchOptions,
             action: PayloadAction<{
                 filter: "type" | "rating" | "status";
                 value: string
@@ -50,7 +50,7 @@ const searchOptionsSlice = createSlice({
             state.page = 1;
         },
         updateDateFilter(
-            state,
+            state: SearchOptions,
             action: PayloadAction<{
                 filter: "startDate" | "endDate";
                 value: Date | null;
@@ -61,12 +61,12 @@ const searchOptionsSlice = createSlice({
             state.page = 1;
         },
         updateSfwFilter(
-            state,
+            state: SearchOptions,
             action: PayloadAction<boolean>
         ) {
             state.sfw = action.payload;
         },
-        resetFilters(state) {
+        resetFilters(state: SearchOptions) {
             state.page = initialState.page;
             state.genres = initialState.genres;
             state.type = initialState.type;
@@ -76,10 +76,10 @@ const searchOptionsSlice = createSlice({
             state.endDate = initialState.endDate;
             state.sfw = initialState.sfw;
         },
-        updateCurrentPage(state, action: PayloadAction<number>) {
+        updateCurrentPage(state: SearchOptions, action: PayloadAction<number>) {
             state.page = action.payload;
         },
-        updateSelectedGenres(state, action: PayloadAction<string>) {
+        updateSelectedGenres(state: SearchOptions, action: PayloadAction<string>) {
             const currentGenres = [...state.genres];
             const genreId = action.payload;
             const existingGenreIndex = currentGenres.indexOf(genreId);

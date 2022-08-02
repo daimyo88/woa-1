@@ -38,6 +38,18 @@ export default function Theme({children}) {
               },
             }
           },
+          MuiTooltip: {
+            styleOverrides: {
+              tooltip: {
+                  background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'
+              },
+              arrow: {
+                '&&:before': {
+                    background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'
+                }
+              },
+            }
+          },
           MuiList: {
             styleOverrides: {
               padding: {

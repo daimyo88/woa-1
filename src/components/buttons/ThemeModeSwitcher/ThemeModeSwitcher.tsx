@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 import { themeModeActions } from '../../../store/theme-mode-slice';
 import Button from '@mui/material/Button';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
-export default function ThemeModeSwitcher() {
-    const themeMode = useSelector(state => state.themeMode);
-    const dispatch = useDispatch();
+const ThemeModeSwitcher: FC = () => {
+    const themeMode = useAppSelector(state => state.themeMode);
+    const dispatch = useAppDispatch();
 
     const switchMode = () => {
         dispatch(themeModeActions.toggleThemeMode());
@@ -31,3 +31,5 @@ export default function ThemeModeSwitcher() {
         </Button> 
     )
 }
+
+export default ThemeModeSwitcher;
