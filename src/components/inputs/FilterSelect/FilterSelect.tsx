@@ -1,13 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Typography } from '@mui/material';
-import { useTheme } from '@emotion/react';
+import { useTheme } from '@mui/material';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function FilterSelect({ title, value, options, changeHandler}) {
+interface SelectProps {
+    title: string,
+    value: string,
+    options: Array<{ title: string, value: string}>,
+    changeHandler: (value: string) => void,
+
+}
+
+const FilterSelect: FC<SelectProps> = ({ title, value, options, changeHandler})  => {
     const theme = useTheme();
     return (
         <>
@@ -40,7 +47,7 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
                         return (
                             <MenuItem 
                                 key={value} 
-                                style={{background: theme.palette.background, fontSize: '14px'}} 
+                              //  style={{background: theme.palette.menuBackground, fontSize: '14px'}} 
                                 value={value}
                             >
                                 {title}
@@ -53,9 +60,4 @@ export default function FilterSelect({ title, value, options, changeHandler}) {
     )
 }
 
-FilterSelect.propTypes = {
-    title: PropTypes.string.isRequired,
-    value: PropTypes.string,
-    options: PropTypes.array,
-    changeHandler: PropTypes.func,
-}
+export default FilterSelect;

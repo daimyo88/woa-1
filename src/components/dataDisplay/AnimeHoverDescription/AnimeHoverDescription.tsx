@@ -1,17 +1,14 @@
 import React, { FC } from "react";
 import Typography from "@mui/material/Typography";
-//import StyledTooltip from "../StyledTooltip/StyledTooltip";
-import AdditionalInfo from "../AdditionalInfo/AdditionalInfo";
 import Tooltip from "@mui/material/Tooltip";
 
-interface Genre {
-    name: string
-}
+import AdditionalInfo from "../AdditionalInfo/AdditionalInfo";
+import Genre from '../../../models/Genre';
 
 interface AnimeHoverDescriptionProps {
     title: string;
     synopsis: string;
-    genres: string[];
+    genres: Array<Genre>;
     rating: string;
     aired: string;
 }

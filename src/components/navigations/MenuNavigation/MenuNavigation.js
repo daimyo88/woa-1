@@ -54,7 +54,7 @@ export default function MenuNavigation() {
             >
               <Box
                 sx={{
-                  background: theme.palette.background,
+                  background: theme.palette.background.default,
                 }}
               >
                 {PAGES.map((page) => (

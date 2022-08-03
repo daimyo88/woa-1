@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -11,10 +10,20 @@ import Box from '@mui/material/Box';
 
 import { parseISO } from 'date-fns';
 
-export default function FilterSelect({ title, value, changeHandler}) {
+interface SelectProps {
+    title: string,
+    value: string,
+    changeHandler: (value: string | null) => void,
+}
 
-    const handleChange = (newValue) => {
-        changeHandler(newValue.toString());
+const FilterSelect: FC<SelectProps> = ({ title, value, changeHandler}) => {
+
+    const handleChange = (value: Date | null) => {
+        let newValue: string | null = null;
+        if(value instanceof Date) {
+            newValue = value.toString()
+        }
+        changeHandler(newValue);
     };
 
     const resetDate = () => {
@@ -40,7 +49,6 @@ export default function FilterSelect({ title, value, changeHandler}) {
                 reduceAnimations
                 minDate={parseISO('1917-01-01')}
                 maxDate={parseISO('2030-12-31')}
-                type="contained"
                 renderInput={(params) => 
                     <Box
                         sx={{
@@ -59,8 +67,4 @@ export default function FilterSelect({ title, value, changeHandler}) {
     )
 }
 
-FilterSelect.propTypes = {
-    title: PropTypes.string.isRequired,
-    value: PropTypes.string,
-    changeHandler: PropTypes.func,
-}
+export default FilterSelect;

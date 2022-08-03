@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const mode = localStorage.getItem('woaThemeMode') || 'dark';
+const mode = localStorage.getItem('woaThemeMode') === 'light' ? 'light' : 'dark';
 
 interface ThemeMode {
-    mode: string
+    mode: 'dark' | 'light'
 }
 
 const initialState: ThemeMode = {

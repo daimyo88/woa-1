@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import StyledLink from '../../text/StyledLink/StyledLink';
 
-export default function PageFooter() {
+const PageFooter: FC = ()  => {
     return (
         <Box sx={{bgcolor: 'footerBackground'}}>
             <Paper elevation={2}>
@@ -19,3 +19,5 @@ export default function PageFooter() {
         </Box>
     )
 }
+
+export default PageFooter;

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-//import { useTheme, Theme } from '@emotion/react';
-import { useTheme, Theme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 interface AdditionalInfoProps {
@@ -10,7 +9,7 @@ interface AdditionalInfoProps {
 }
 
 const AdditionalInfo: FC<AdditionalInfoProps> = ({label, text, color = 'primary'}) => {
-    const theme: Theme = useTheme();
+    const theme = useTheme();
     const textColor = color === 'primary' ? theme.palette.primary.light : theme.palette.secondary.light;
     return (
         <Typography paragraph sx={{mb:'2px'}} color="text.primary">

@@ -1,16 +1,17 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from 'react';
 import { Typography } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 
+import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 import { useGetGenresQuery } from '../../../services/genres';
+import Genre from '../../../models/Genre';
 
-export default function FilterGenres() {
-    const searchOptions = useSelector(state => state.searchOptions);
-    const dispatch = useDispatch();
-    const { data } = useGetGenresQuery();
+const FilterGenres: FC = () => {
+    const searchOptions = useAppSelector(state => state.searchOptions);
+    const dispatch = useAppDispatch();
+    const { data } = useGetGenresQuery('');
 
     return (
         <>
@@ -22,7 +23,7 @@ export default function FilterGenres() {
                 Genres
             </Typography>
             <Grid container spacing={1}>
-                { data?.data.map(({mal_id, name}) => {
+                { data?.data.map(({mal_id, name}: Genre) => {
                     const variant = searchOptions.genres.includes(mal_id) ? "filled" : "outlined";
                     return (
                         <Grid key={mal_id} item>
@@ -39,3 +40,5 @@ export default function FilterGenres() {
         </>
     )
 }
+
+export default FilterGenres;

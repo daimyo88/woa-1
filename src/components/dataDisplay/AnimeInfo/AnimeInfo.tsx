@@ -1,9 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Grid, Typography } from '@mui/material';
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 
-export default function AnimeInfo(props) {
+interface AnimeInfoProps {
+    synopsis: string,
+    genres: Array<{ name: string }>,
+    rating: string,
+    aired: string,
+    score: number,
+    type: string,
+    status: string,
+}
+
+const AnimeInfo: FC<AnimeInfoProps> = (props) => {
     const { synopsis, genres, rating, aired, score, type, status } = props;
     const genresArr = genres?.map(genre => genre.name);
     const scoreString = score ? `${score} / 10` : 'N/A';
@@ -28,12 +37,4 @@ export default function AnimeInfo(props) {
     )
 }
 
-AnimeInfo.propTypes = {
-    synopsis: PropTypes.string,
-    genres: PropTypes.array,
-    rating: PropTypes.string,
-    aired: PropTypes.string,
-    score: PropTypes.number,
-    type: PropTypes.string,
-    status: PropTypes.string,
-}
+export default AnimeInfo;

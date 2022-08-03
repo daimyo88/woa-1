@@ -1,14 +1,50 @@
-import React  from 'react';
-import { useSelector } from 'react-redux/es/exports';
+import React, { FC }  from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from "@mui/material/styles";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
+import { useAppSelector } from '../hooks/redux';
+
+declare module '@mui/material/styles/createPalette' {
+  interface PaletteOptions {
+    footerBackground: string;
+    tooltipBackground: string;
+  }
+}
+
+declare module '@mui/material/styles' {
+  interface Components {
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+            background: string
+        },
+      }  
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: {
+            background: string
+        },
+      }  
+    },
+    MuiTabScrollButton: {
+      styleOverrides: {
+        root: {
+            color: string,
+            '&.Mui-disabled': {
+              opacity: number
+            }
+        },
+      }  
+    },
+  }
+}
 
 const breakpoints = createBreakpoints({});
 
-export default function Theme({children}) {
-    const themeMode = useSelector(state => state.themeMode);
+const Theme: FC = ({children}) => {
+    const themeMode = useAppSelector(state => state.themeMode);
 
     const theme = createTheme({
         components: {
@@ -74,9 +110,7 @@ export default function Theme({children}) {
           MuiPaper: {
             styleOverrides: {
               root: {
-                ...(themeMode.mode === 'light' && {
-                  background: '#f2ecf9'
-                })
+                  backgroundColor: themeMode.mode === 'light' ? '#f2ecf9': 'transparent'
               },
             }     
           },
@@ -107,6 +141,16 @@ export default function Theme({children}) {
                   background: themeMode.mode === 'light' ? '#e5d9f3' : '#353535'
               },
             }     
+          },
+          MuiTabScrollButton: {
+            styleOverrides: {
+              root: {
+                color: themeMode.mode === 'light' ? 'rgb(30, 30, 30)' : '#ffffff',
+                '&.Mui-disabled': {
+                  opacity: 0.3
+                }
+              }
+            }
           },
           MuiChip: {
             styleOverrides: {
@@ -140,16 +184,6 @@ export default function Theme({children}) {
               }
             }
           },
-          MuiTabScrollButton: {
-            styleOverrides: {
-              root: {
-                color: themeMode.mode === 'light' ? 'rgb(30, 30, 30)' : '#ffffff',
-                '&.Mui-disabled': {
-                  opacity: 0.3
-                }
-              }
-            }
-          }
         },
         typography: {
             h1: {
@@ -185,7 +219,6 @@ export default function Theme({children}) {
           primary: {
             main: '#512888',
             light: '#804ac9',
-            lightest: '#dacbef',
             dark: '#40206c'
           },
           secondary: {
@@ -193,21 +226,14 @@ export default function Theme({children}) {
             light: '#ff5c15',
             dark: '#ae3400'
           },
-          ...(themeMode.mode === 'light' ? {
-          footerBackground: '#dacbef',
-          tooltipBackground: '#e5d9f3',
-          background: '#ffffff',
+          footerBackground: themeMode.mode === 'light' ? '#dacbef' : 'transparent',
+          tooltipBackground: themeMode.mode === 'light' ? '#e5d9f3' : '#353535',
+          background: {
+            default: themeMode.mode === 'light' ? '#ffffff' : 'rgb(30, 30, 30)',
+          },
           text: {
-            primary: 'rgb(30, 30, 30)'
+            primary: themeMode.mode === 'light' ? 'rgb(30, 30, 30)' : '#fff'
           }
-        } : {
-            footerBackground: 'transparent',
-            tooltipBackground: '#353535',
-            background: 'rgb(30, 30, 30)',
-            text: {
-              primary: '#fff'
-            }  
-        })
         },
     });
 
@@ -218,3 +244,5 @@ export default function Theme({children}) {
         </ThemeProvider>
     )
 }
+
+export default Theme;

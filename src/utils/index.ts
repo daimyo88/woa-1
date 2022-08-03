@@ -2,24 +2,24 @@ import format from 'date-fns/format';
 import endOfYear from 'date-fns/endOfYear';
 import startOfYear from 'date-fns/startOfYear';
 
-export const formatEndDate = (date: Date) => {
-    let endDateString: string = '';
+export const formatEndDate = (date: Date | null) => {
+    let endDateFormat: string = '';
     if(date) {
         let endDate: Date = endOfYear(new Date(date));
-        endDateString = format(endDate, 'yyyy-MM-dd');
-        endDateString = `&end_date=${endDateString}`;
+        endDateFormat = format(endDate, 'yyyy-MM-dd');
+        endDateFormat = `&end_date=${endDateFormat}`;
     }
-    return endDateString;
+    return endDateFormat;
 }
 
-export const formatStartDate = (date: Date) => {
-    let startDateString: string = '';
+export const formatStartDate = (date: Date | null) => {
+    let startDateFormat: string = '';
     if(date) {
         let startDate: Date = startOfYear(new Date(date));
-        startDateString = format(startDate, 'yyyy-MM-dd');
-        startDateString = `&start_date=${startDate}`;
+        startDateFormat = format(startDate, 'yyyy-MM-dd');
+        startDateFormat = `&start_date=${startDateFormat}`;
     }
-    return startDateString;
+    return startDateFormat;
 }
 
 export const formatSfwFilter = (sfw: boolean) => {

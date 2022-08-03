@@ -78,7 +78,7 @@ export default function AnimeSort({count}) {
                             > 
                                 { SORT_OPTIONS.map(({title, value}) => {
                                     return (
-                                        <MenuItem key={value} style={{background: theme.palette.background}} value={value}>{title}</MenuItem>
+                                        <MenuItem key={value} style={{background: theme.palette.background.default}} value={value}>{title}</MenuItem>
                                     )
                                 })}
                             </Select>

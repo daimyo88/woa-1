@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import React, { FC } from 'react';
 import PageTitle from '../components/text/PageTitle/PageTitle';
 import AnimeSearch from '../components/ui/AnimeSearch/AnimeSearch';
 import AnimeList from '../components/structural/AnimeList/AnimeList';
@@ -9,11 +8,12 @@ import AnimeListLoader from '../components/loaders/AnimeListLoader/AnimeListLoad
 import NothingFoundMessage from '../components/messages/NothingFoundMessage/NothingFoundMessage';
 import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 
+import { useAppSelector } from '../hooks/redux';
 import { useGetAnimeListQuery } from '../services/anime';
 import { formatStartDate, formatEndDate, formatSfwFilter } from '../utils';
 
-export default function SearchPage() {
-    const searchOptions = useSelector(state => state.searchOptions);
+const SearchPage: FC = () => {
+    const searchOptions = useAppSelector(state => state.searchOptions);
 
     const { data, isLoading, error } = useGetAnimeListQuery({
         ...searchOptions,
@@ -37,3 +37,5 @@ export default function SearchPage() {
         </>
     )
 }
+
+export default SearchPage;
