@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@emotion/react';
+import React, { FC } from 'react';
+import { useTheme } from '@mui/material';
 import styled from '@emotion/styled';
 
-export default function HighlightedTitle({ text }) {
+const HighlightedTitle: FC<{ text: string }> = ({ text }) => {
     const theme = useTheme();
     const StyledTitle = styled.span`
             color: ${theme.palette.secondary.main};
@@ -19,6 +18,4 @@ export default function HighlightedTitle({ text }) {
     )
 }
 
-HighlightedTitle.propTypes = {
-    text: PropTypes.string.isRequired,
-}
+export default HighlightedTitle;

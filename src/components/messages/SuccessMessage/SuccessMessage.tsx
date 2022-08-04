@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import successPicture from '../../../assets/img/hachikuji_smile.png';
 
-export default function SuccessMessage({text}) {
+const SuccessMessage: FC<{ text: string }> = ({text})  => {
     return (
         <Grid container justifyContent="center">
             <Grid item sx={{p: '20px'}}>
@@ -22,6 +21,4 @@ export default function SuccessMessage({text}) {
     )
 }
 
-SuccessMessage.propTypes = {
-    text: PropTypes.string.isRequired,
-}
+export default SuccessMessage;

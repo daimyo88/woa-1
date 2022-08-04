@@ -1,10 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-export default function AnimeTabs(props) {
+interface TabsProps {
+    options: Array<string>,
+    value: number,
+    changeHandler: (value: number) => void,
+}
+
+const AnimeTabs: FC<TabsProps> = (props) => {
     const { options, value, changeHandler } = props;
+
+    const switchTab = (e: React.SyntheticEvent<Element, Event>, value: number) => {
+        changeHandler(value);
+    }
 
     return (
         <Tabs 
@@ -12,7 +21,7 @@ export default function AnimeTabs(props) {
             variant="scrollable"
             scrollButtons="auto"
             sx={{ width: '100%', maxWidth: 'calc(100vw - 32px)' }}
-            onChange={(e, value) => {changeHandler(value)}} 
+            onChange={(e, value) => {switchTab(e, value)}} 
         >
             { options.map(el => {
                 return (
@@ -27,8 +36,4 @@ export default function AnimeTabs(props) {
     )
 }
 
-AnimeTabs.propTypes = {
-    options: PropTypes.array.isRequired,
-    value: PropTypes.number.isRequired,
-    changeHandler: PropTypes.func,
-}
+export default AnimeTabs;

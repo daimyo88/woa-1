@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Button from '@mui/material/Button';
 import { NavLink } from "react-router-dom";
 import { PAGES } from '../../../constants/contstants';
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Navigation() {
+const Navigation: FC = () => {
     return (
         <>
             {PAGES.map((page) => {
@@ -36,3 +36,5 @@ export default function Navigation() {
         </>
     )
 }
+
+export default Navigation;

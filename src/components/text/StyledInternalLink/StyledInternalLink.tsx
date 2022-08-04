@@ -1,9 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Link } from "react-router-dom";
-import styled from '@emotion/styled';
+import { styled } from "@mui/material/styles";
 
-const StyledLink = styled((props) => (
+interface LinkProps {
+    url: string,
+    text: string
+}
+
+const StyledLink = styled((props: { to: string }) => (
         <Link {...props } />
     ))(({theme}) => ({
         color: theme.palette.text.primary,
@@ -13,13 +17,10 @@ const StyledLink = styled((props) => (
         }
     }));
 
-export default function StyledInternalLink({url, text}) {
+const StyledInternalLink: FC<LinkProps> = ({url, text}) => {
     return (
         <StyledLink to={url}>{text}</StyledLink>
     )
 }
 
-StyledInternalLink.propTypes = {
-    url: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-}
+export default StyledInternalLink;

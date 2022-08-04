@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import AnimeListContainer from '../../containers/AnimeListContainer/AnimeListContainer';
-import AnimeItem from '../../structural/AnimeItem/AnimeItem';
+import AnimeItem from '../AnimeItem/AnimeItem';
+import AnimeProps from '../../../models/AnimeItem';
 
-export default function AnimeList({animeList}) {
+const AnimeList: FC<{animeList: AnimeProps[]}> = ({animeList}) => {
 
     return (
         <AnimeListContainer>
@@ -14,3 +15,5 @@ export default function AnimeList({animeList}) {
         </AnimeListContainer>
     )
 }
+
+export default AnimeList;

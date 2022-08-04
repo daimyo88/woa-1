@@ -12,18 +12,14 @@ import { parseISO } from 'date-fns';
 
 interface SelectProps {
     title: string,
-    value: string,
-    changeHandler: (value: string | null) => void,
+    value: Date | null,
+    changeHandler: (value: Date | null) => void,
 }
 
 const FilterSelect: FC<SelectProps> = ({ title, value, changeHandler}) => {
 
     const handleChange = (value: Date | null) => {
-        let newValue: string | null = null;
-        if(value instanceof Date) {
-            newValue = value.toString()
-        }
-        changeHandler(newValue);
+        changeHandler(value);
     };
 
     const resetDate = () => {

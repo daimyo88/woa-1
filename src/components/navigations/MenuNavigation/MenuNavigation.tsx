@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from "react-router-dom";
-import { useTheme } from '@emotion/react';
+import { useTheme } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { PAGES } from '../../../constants/contstants';
 import { Box } from '@mui/system';
 
-export default function MenuNavigation() {
+const MenuNavigation: FC = () => {
   const theme = useTheme();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState<Element | null>(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = (event: Event | React.SyntheticEvent) => {
+    setAnchorElNav(event.currentTarget as Element);
   };
 
   const handleCloseNavMenu = () => {
@@ -87,3 +87,5 @@ export default function MenuNavigation() {
       </>
   )
 }
+
+export default MenuNavigation;

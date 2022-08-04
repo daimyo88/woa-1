@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@emotion/react';
-import styled from '@emotion/styled';
+import React, { FC } from 'react';
+import { useTheme } from '@mui/material';
+import { styled } from "@mui/material/styles";
 
-const StyledTitle = styled.h1(({theme}) => ({
+const StyledTitle = styled('h1')(({theme}) => ({
         color: theme.palette.secondary.main,
         textAlign: 'center',
         fontWeight: 500,
@@ -15,7 +14,7 @@ const StyledTitle = styled.h1(({theme}) => ({
         }
     }))
 
-export default function PageTitle({ text }) {
+const PageTitle: FC<{ text: string }> = ({ text }) => {
     const theme = useTheme();
 
     return (
@@ -23,6 +22,4 @@ export default function PageTitle({ text }) {
     )
 }
 
-PageTitle.propTypes = {
-    text: PropTypes.string.isRequired,
-}
+export default PageTitle;

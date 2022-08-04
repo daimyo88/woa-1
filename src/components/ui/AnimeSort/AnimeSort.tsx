@@ -1,27 +1,29 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Select from '@mui/material/Select';
+import { SelectChangeEvent } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import { useTheme } from '@emotion/react';
+import { useTheme } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import AnimeListContainer from '../../containers/AnimeListContainer/AnimeListContainer';
 import { searchOptionsSliceActions } from '../../../store/search-options-slice';
 
 import { SORT_OPTIONS } from '../../../constants/contstants';
 
-export default function AnimeSort({count}) {
-    const theme = useTheme();
-    const searchOptions = useSelector(state => state.searchOptions);
-    const dispatch = useDispatch();
 
-    const handleChange = (event) => {
-        dispatch(searchOptionsSliceActions.updateSort(event.target.value));
+const AnimeSort: FC<{ count: number}> = ({count}) => {
+    const theme = useTheme();
+    const searchOptions = useAppSelector(state => state.searchOptions);
+    const dispatch = useAppDispatch();
+
+    const handleChange = (event: SelectChangeEvent<unknown>) => {
+        dispatch(searchOptionsSliceActions.updateSort(event.target.value as string));
     };
 
     return (
@@ -89,3 +91,5 @@ export default function AnimeSort({count}) {
         </Box>
     )
 }
+
+export default AnimeSort;

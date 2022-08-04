@@ -1,27 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import errorPicture from '../../../assets/img/shinobu_pout.png';
+import nothingFoundPicture from '../../../assets/img/hachikuji_confused.png';
 
-export default function ErrorMessage({text}) {
+const NothingFoundMessage: FC<{ text?: string }> = ({text = 'Nothing found :('}) =>  {
     return (
         <Grid container justifyContent="center">
             <Grid item sx={{p: '50px 20px'}}>
-                <img src={errorPicture} alt="anime character pout" />
+                <img src={nothingFoundPicture} alt="anime character confused" />
                 <Typography 
                     variant="h2" 
                     align="center"
                     color="secondary"
                     sx={{mt: '20px', fontWeight: '400'}}
                 >
-                    { text }
+                    {text}
                 </Typography>
             </Grid>
         </Grid>
     )
 }
 
-ErrorMessage.propTypes = {
-    text: PropTypes.string.isRequired,
-}
+export default NothingFoundMessage;

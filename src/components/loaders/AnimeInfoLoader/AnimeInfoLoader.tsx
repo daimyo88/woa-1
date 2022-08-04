@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 
 const tabsBlank = [0, 1, 2, 3];
 const textBlank = [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-export default function AnimeInfoLoader() {
+const AnimeInfoLoader: FC = () => {
     return (
         <Grid container sx={{my: '20px'}}>
             <Grid item xs={12} sx={{ pb: '15px', mb: '10px'}}>
@@ -63,3 +63,4 @@ export default function AnimeInfoLoader() {
     )
 }
 
+export default AnimeInfoLoader;

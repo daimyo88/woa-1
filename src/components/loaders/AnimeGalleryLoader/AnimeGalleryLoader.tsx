@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 
-export default function AnimeGalleryLoader() {
+const AnimeGalleryLoader: FC = () => {
     return (
         <Grid container alignItems="center" spacing={1} >
             <Grid item sm={4} xs={12}>
@@ -17,4 +17,6 @@ export default function AnimeGalleryLoader() {
     </Grid>
     )
 }
+
+export default AnimeGalleryLoader;
 

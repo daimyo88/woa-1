@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -7,10 +6,11 @@ import { Link } from "react-router-dom";
 import Chip from '@mui/material/Chip';
 import { Box } from '@material-ui/core';
 import StarIcon from '@mui/icons-material/Star';
-import { useTheme } from '@emotion/react';
+import { useTheme } from '@mui/material';
 import AnimeHoverDescription from '../../dataDisplay/AnimeHoverDescription/AnimeHoverDescription';
+import AnimeItemProps from '../../../models/AnimeItem';
 
-export default function AnimeItem({mal_id, title, images, score, type, synopsis, genres, rating, aired}) {
+const AnimeItem: FC<AnimeItemProps> = ({mal_id, title, images, score, type, synopsis, genres, rating, aired}) => {
     const theme = useTheme();
 
     let animeTitle = title;
@@ -115,14 +115,4 @@ export default function AnimeItem({mal_id, title, images, score, type, synopsis,
     )
 }
 
-AnimeItem.propTypes = {
-    mal_id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    images: PropTypes.object,
-    score: PropTypes.number,
-    type: PropTypes.string,
-    synopsis: PropTypes.string,
-    genres: PropTypes.array,
-    rating: PropTypes.string,
-    aired: PropTypes.object,
-}
+export default AnimeItem;

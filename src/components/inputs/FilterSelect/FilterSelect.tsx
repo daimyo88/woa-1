@@ -47,7 +47,7 @@ const FilterSelect: FC<SelectProps> = ({ title, value, options, changeHandler}) 
                         return (
                             <MenuItem 
                                 key={value} 
-                              //  style={{background: theme.palette.menuBackground, fontSize: '14px'}} 
+                                style={{background: theme.palette.background.default, fontSize: '14px'}} 
                                 value={value}
                             >
                                 {title}

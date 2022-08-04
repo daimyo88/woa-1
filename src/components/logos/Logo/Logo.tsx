@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 
-export default function Logo() {
+const Logo: FC = () => {
 
     return (
         <Button
@@ -34,3 +34,5 @@ export default function Logo() {
         </Button>
     )
 }
+
+export default Logo;

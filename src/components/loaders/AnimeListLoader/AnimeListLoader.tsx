@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 
 import Skeleton from '@mui/material/Skeleton';
@@ -16,7 +16,7 @@ if(window.innerWidth < 548) {
     blankItems.length = 2;
 } 
 
-export default function AnimeListLoader() {
+const AnimeListLoader: FC = () => {
     return (
         <AnimeListContainer>
             { blankItems.map(item => {
@@ -42,3 +42,5 @@ export default function AnimeListLoader() {
         </AnimeListContainer>
     )
 }
+
+export default AnimeListLoader;

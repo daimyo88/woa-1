@@ -1,5 +1,4 @@
-import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -10,18 +9,27 @@ import FilterSelect from "../../inputs/FilterSelect/FilterSelect";
 import FilterDate from "../../inputs/FilterDate/FilterDate";
 import FilterSwitch from "../../inputs/FilterSwitch/FilterSwitch";
 
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { searchOptionsSliceActions } from "../../../store/search-options-slice";
 import { TYPE_OPTIONS } from "../../../constants/contstants";
 import { RATING_OPTIONS } from "../../../constants/contstants";
 import { STATUS_OPTIONS } from "../../../constants/contstants";
 
-export default function AnimeFilters() {
-    const searchOptions = useSelector(state => state.searchOptions);
-    const dispatch = useDispatch();
+const AnimeFilters: FC = () => {
+    const searchOptions = useAppSelector(state => state.searchOptions);
+    const dispatch = useAppDispatch();
     const { type, rating, status, startDate, endDate, sfw } = searchOptions;
 
-    const setFilter = (filter, value) => {
+    const setFilter = (filter: "type" | "status" | "rating", value: string) => {
         dispatch(searchOptionsSliceActions.updateFilter({ filter, value }))
+    };
+
+    const updateDateFilter = (filter: "startDate" | "endDate", value: Date | null ) => {
+        dispatch(searchOptionsSliceActions.updateDateFilter({ filter, value }))
+    };
+
+    const updateSfwFilter = (value: boolean ) => {
+        dispatch(searchOptionsSliceActions.updateSfwFilter(value))
     };
 
     return (
@@ -58,21 +66,21 @@ export default function AnimeFilters() {
                     <FilterSwitch
                         title="SFW"
                         value={sfw}
-                        changeHandler={(val) => setFilter("sfw", val)}
+                        changeHandler={(val) => updateSfwFilter(val)}
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={2} sx={{ mb: "10px" }}>
                     <FilterDate
                         title="Start year"
                         value={startDate}
-                        changeHandler={(val) => setFilter("startDate", val)}
+                        changeHandler={(val) => updateDateFilter("startDate", val)}
                     />
                 </Grid>
                 <Grid item xs={6} md={4} lg={2} sx={{ mb: "10px" }}>
                     <FilterDate
                         title="End year"
                         value={endDate}
-                        changeHandler={(val) => setFilter("endDate", val)}
+                        changeHandler={(val) => updateDateFilter("endDate", val)}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -95,3 +103,5 @@ export default function AnimeFilters() {
         </Paper>
     );
 }
+
+export default AnimeFilters;
