@@ -1,4 +1,5 @@
 import React, { useState, FC } from 'react';
+import { FormikHelpers } from 'formik';
 import { Paper, Typography } from '@mui/material';
 import PageTitle from '../components/text/PageTitle/PageTitle';
 import StyledExternalLink from '../components/text/StyledExternalLink/StyledExternalLink';
@@ -16,7 +17,7 @@ const Page: FC = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-    const sendEmail = async (values: ContactData, formik: any) => {
+    const sendEmail = async (values: ContactData, formik: FormikHelpers<ContactData>) => {
         try {
             setLoading(true);
             const response = await sendMessage(values, setError);

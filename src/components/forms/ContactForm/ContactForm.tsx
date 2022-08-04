@@ -15,7 +15,7 @@ const initialValues: ContactData = {
     message: '' 
 }
 
-const ContactForm: FC<{ submitHandler: (values: ContactData, formik?: FormikHelpers<ContactData>) => void, loading: boolean }> = (props) => {
+const ContactForm: FC<{ submitHandler: (values: ContactData, formik: FormikHelpers<ContactData>) => void, loading: boolean }> = (props) => {
     return (
         <Formik
             initialValues= { initialValues }
@@ -48,7 +48,7 @@ const ContactForm: FC<{ submitHandler: (values: ContactData, formik?: FormikHelp
                         <Grid sx={{opacity: 0}} item xs={12}>
                             <CustomInput 
                                 name="lastName"
-                                type="text"
+                                type="hidden"
                             />
                         </Grid>
                         <Grid item xs={12} sx={{mb: '20px'}}>

@@ -34,7 +34,7 @@ const AnimeHoverDescription: FC<AnimeHoverDescriptionProps> = ({
         shortDescpription += "..";
     }
 
-    const genresArr = genres?.map((genre: any) => genre.name);
+    const genresArr = genres?.map((genre: Genre) => genre.name);
 
     return (
         <Tooltip
