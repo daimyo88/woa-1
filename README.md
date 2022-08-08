@@ -4,7 +4,9 @@ This is just a light anime library that is based on data from [MyAnimeList.net](
 
 ## Technologies
 
-  - React (Context for managing global state)
+  - React
+  - TypeScript
+  - Redux (Redux Toolkit)
   - Material UI
   - Axios
   - Formik (with Yup)

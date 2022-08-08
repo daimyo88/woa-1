@@ -18,7 +18,7 @@ const Page: FC = () => {
                 </Typography>
                 <Typography paragraph>
                     Technical stack/libraries used in this project: <br />
-                    React (React context for managing global state), Material UI, Axios, Formik (with Yup), date-fns.
+                    React, TypeScript, Redux (Redux Toolkit), Material UI, Axios, Formik (with Yup), date-fns.
                 </Typography>
                 <Typography variant="h2" color="secondary">About the author</Typography>
                 <Typography paragraph>
