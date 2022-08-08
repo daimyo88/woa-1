@@ -5,12 +5,12 @@ import CtaLink from './CtaLink';
 
 describe('CtaLink', () => {
   test('renders link text', () => {
-    render(<BrowserRouter><CtaLink url="/contact" text="Contact" /></BrowserRouter>);
+    render(<BrowserRouter><CtaLink url="/contact" text="Contact" icon={null}/></BrowserRouter>);
     expect(screen.getByText("Contact")).toBeInTheDocument();
   });
 
   test('link has correct href', () => {
-    render(<BrowserRouter><CtaLink url="/contact" text="Contact" /></BrowserRouter>);
+    render(<BrowserRouter><CtaLink url="/contact" text="Contact" icon={null}/></BrowserRouter>);
     expect(screen.getByText("Contact")).toHaveAttribute("href", "/contact");
   //  screen.debug();
   });
