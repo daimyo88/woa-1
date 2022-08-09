@@ -6,7 +6,13 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 
 import CustomInput from '../../inputs/CustomInput/CustomInput';
-import ContactData from '../../../models/ContactData';
+
+interface ContactData {
+    name: string,
+    lastName: string,
+    email: string,
+    message: string
+}
 
 const initialValues: ContactData = {
     name: '',
