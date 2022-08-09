@@ -9,7 +9,12 @@ import SuccessMessage from '../components/messages/SuccessMessage/SuccessMessage
 import ErrorMessage from '../components/messages/ErrorMessage/ErrorMessage';
 import FullscreenContainer from '../components/containers/FullscreenContainer/FullscreenContainer';
 
-import ContactData from '../models/ContactData';
+interface ContactData {
+    name: string,
+    lastName: string,
+    email: string,
+    message: string
+}
 
 const Page: FC = () => {
 
