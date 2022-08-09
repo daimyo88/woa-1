@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import ReactGA from "react-ga";
 
 import store from "./store";
 import Public from "./layouts/Public";
@@ -14,15 +13,7 @@ const Contact = React.lazy(() => import("./routes/Contact"));
 const Anime = React.lazy(() => import("./routes/Anime"));
 const PageNotFound = React.lazy(() => import("./routes/PageNotFound"));
 
-const trackingCode = process.env.REACT_APP_GA_CODE;
-
-ReactGA.initialize(trackingCode!);
-
 export default function App() {
-    useEffect(() => {
-        console.log(trackingCode);
-        ReactGA.pageview(window.location.pathname + window.location.search);
-    }, []);
 
     return (
         <Provider store={store}>

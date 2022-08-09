@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -7,10 +8,16 @@ import Header from '../components/headers/PageHeader/PageHeader';
 import Footer from '../components/footers/PageFooter/PageFooter';
 import PageLoader from '../components/loaders/PageLoader/PageLoader';
 import ScrollTopButton from '../components/buttons/ScrollTopButton/ScrollTopButton';
-
+import ga from '../services/ga';
 
 const Public: FC = ()  => {
     const theme = useTheme();
+    const location = useLocation();
+
+    useEffect(() => {
+        ga(location?.pathname);
+    }, [location])
+
     return (
         <>
             <Grid 
