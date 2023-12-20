@@ -23,7 +23,10 @@ export const animeApi = createApi({
                 endDateFilter,
                 sort,
             }) => {
-              return `/anime?limit=24&q=${searchQuery}&page=${page}&genres=${genres}&type=${type}&rating=${rating}&status=${status}${sfwFilter}${startDateFilter}${endDateFilter}${sort}`
+              const typeQuery = type ? `&type=${type}` : '';
+              const ratingQuery = rating ? `&rating${rating}` : '';
+              const statusQuery = status ? `&rating${status}` : '';
+              return `/anime?limit=24&q=${searchQuery}&page=${page}&genres=${genres}${typeQuery}${ratingQuery}${statusQuery}${sfwFilter}${startDateFilter}${endDateFilter}${sort}`
             }
                 
         }),
