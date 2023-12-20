@@ -3,4 +3,4 @@ version: 0.2
 phases:
   build:
     commands:
-      - npm install --force
+      - npm install --legacy-peer-deps
